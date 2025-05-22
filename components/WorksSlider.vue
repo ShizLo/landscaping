@@ -109,6 +109,7 @@ onUnmounted(() => {
               <div class="portfolio-card">
                 <div class="card-image">
                   <img :src="item.url" :alt="item.title" class="portfolio-image" loading="lazy" />
+                  <!-- <NuxtImg :src="item.url" :alt="item.title" class="portfolio-image" /> -->
                   <div class="image-overlay"></div>
 
                   <div class="portfolio-name-wrapper">

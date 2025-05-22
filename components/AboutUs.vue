@@ -33,7 +33,7 @@ onMounted(() => {
             </div>
 
             <div class="about-us__image about-us__animated">
-              <img src="/images/fence/1.jpg" alt="Команда БИС за работой" loading="lazy" />
+              <NuxtImg src="/images/fence/1.jpg" alt="Команда БИС за работой" loading="lazy" />
             </div>
           </div>
 

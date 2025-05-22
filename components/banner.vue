@@ -138,7 +138,8 @@ function goTo(path) {
         <div class="swiper-banner">
           <div class="swiper-wrapper">
             <div v-for="item in bannerPrice" class="swiper-slide">
-              <img class="swiper__img" loading="lazy" :src="item.url" :alt="item.name" />
+              <!-- <img class="swiper__img" loading="lazy" :src="item.url" :alt="item.name" /> -->
+              <NuxtImg class="swiper__img" :src="item.url" :alt="item.name" loading="lazy" />
               <div class="swiper-lazy-preloader-white"></div>
               <div @click="goTo(item.routerPath)" class="swiper-banner__content">
                 <div v-if="item.price.length > 0" class="content__price">

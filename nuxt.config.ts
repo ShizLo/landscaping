@@ -78,7 +78,7 @@ export default defineNuxtConfig({
       {
         prefix: "my-icon",
         dir: "./assets/iconBIS",
-        // normalizeIconName: false, //TODO: разобратья
+        normalizeIconName: false, //TODO: разобратья
       },
     ],
   },

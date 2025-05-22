@@ -150,7 +150,6 @@ const serviceItems = [
       <v-container class="d-flex align-center">
         <v-app-bar-nav-icon class="hidden-md-and-up" @click="mobileMenu = !mobileMenu" size="x-large" />
         <v-img :src="logo" alt="Благоустройство и инженерные сети" max-width="200" class="mx-auto mx-md-0" contain />
-
         <v-menu v-model="catalogMenu" :close-on-content-click="false" transition="slide-y-transition" offset-y>
           <template #activator="{ props }">
             <v-btn v-bind="props" variant="flat" color="orange-darken-2" class="ml-12 hidden-sm-and-down catalog-btn" size="x-large">
