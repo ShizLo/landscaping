@@ -1,0 +1,40 @@
+@use "../main" as *;
+
+/* Буллеты */
+.swiper-banner .swiper-pagination {
+  bottom: 0;
+}
+.swiper-banner .swiper-pagination-bullet {
+  width: 30px;
+  border-radius: 8px;
+  height: 4px;
+  background-color: #fff;
+}
+.swiper-banner .swiper-pagination-bullet-active {
+  position: relative;
+  width: 60px;
+  border-radius: 8px;
+  height: 4px;
+}
+.swiper-banner .swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 0;
+  opacity: 1;
+  border-radius: 8px;
+  transition: background-color 0.4s linear;
+  animation: progress-css 1s ease-in forwards;
+}
+
+.swiper-banner .swiper-pagination-bullet-active::after {
+  /* Включает анимацию булитов */
+  width: 100%;
+  background-color: #ea5b0c;
+  transition: all 4s linear;
+  transition-property: width, background-color;
+}
