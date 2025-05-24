@@ -82,4 +82,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+  image: {
+    provider: process.env.NITRO_PRESET === "static" ? "static" : "ipx",
+  },
 });

@@ -71,12 +71,12 @@ function initializeBannerStructure() {
       name: "Вынос границ земельного участка",
     },
     {
-      url: "/images/topographyPage/banner-3+.webp",
+      url: "/images/topographyPage/banner-3.webp",
       price: "",
       name: "Проектирование и ландшафтный дизайн",
     },
     {
-      url: "/images/topographyPage/banner-4+.webp",
+      url: "/images/topographyPage/banner-4.webp",
       price: "",
       name: "Эскизный ландшафтный проект",
     },
@@ -86,7 +86,7 @@ function initializeBannerStructure() {
       name: "Полный ландшафтный проект",
     },
     {
-      url: "/images/topographyPage/banner-6+.webp",
+      url: "/images/topographyPage/banner-6.webp",
       price: "",
       name: "Вместе будет дешевле",
     },

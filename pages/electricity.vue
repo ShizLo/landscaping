@@ -61,7 +61,7 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/electricityPage/banner-3+.jpg",
+      url: "/images/electricityPage/banner-3.jpg",
       price: "",
       name: "Монтаж уличного освещения",
     },

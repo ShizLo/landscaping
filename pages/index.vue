@@ -28,7 +28,7 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/swiperBanner/banner-1+.jpg",
+      url: "/images/swiperBanner/banner-1.jpg",
       price: "",
       name: "Благоустройство",
       routerPath: "/",

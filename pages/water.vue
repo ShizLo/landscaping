@@ -72,12 +72,12 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/waterPage/slider-1_.jpg",
+      url: "/images/waterPage/slider-1.jpg",
       price: "",
       name: "Кессон",
     },
     {
-      url: "/images/waterPage/slider-2+.jpg",
+      url: "/images/waterPage/slider-2.jpg",
       price: "",
       name: "Монтаж автоматики",
     },

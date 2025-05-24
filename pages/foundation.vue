@@ -67,7 +67,7 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/foundationPage/slider-1+.jpg",
+      url: "/images/foundationPage/slider-1.jpg",
       price: "",
       name: "Монтаж фундамента под дом",
     },

@@ -95,7 +95,7 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/fence/banner-2++.webp",
+      url: "/images/fence/banner-2.webp",
       price: "",
       name: "Забор из металлического штакетника",
     },
@@ -105,7 +105,7 @@ function initializeBannerStructure() {
       name: "Забор из профлиста",
     },
     {
-      url: "/images/fence/banner-3+++.webp",
+      url: "/images/fence/banner-3.webp",
       price: "",
       name: "Забор из деревянного штакетника",
     },
