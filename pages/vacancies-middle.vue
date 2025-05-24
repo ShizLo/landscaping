@@ -145,7 +145,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-dialog v-model="showDialog" :width="mobile ? '100%' : '800'" persistent :fullscreen="mobile">
+    <!-- <v-dialog v-model="showDialog" :width="mobile ? '100%' : '800'" persistent :fullscreen="mobile">
       <v-card class="feedback-card mx-auto" elevation="3" :class="{ 'mobile-card': mobile }">
         <template v-if="!isSubmitted && showDialog">
           <v-card-title class="feedback-title">
@@ -251,6 +251,167 @@
           </div>
         </template>
       </v-card>
+    </v-dialog> -->
+    <v-dialog v-model="showDialog" :width="mobile ? '100%' : '800'" persistent :fullscreen="mobile">
+      <v-card class="feedback-card mx-auto" elevation="3" :class="{ 'mobile-card': mobile }">
+        <template v-if="!isSubmitted && showDialog">
+          <v-card-title class="feedback-title">
+            <span class="text-uppercase">Отклик на вакансию</span> <br />
+            "Мидл-инженер (нулевого цикла)"
+            <div class="title-underline"></div>
+          </v-card-title>
+
+          <v-card-text>
+            <v-form ref="form" @submit.prevent="submitVacancyApplication">
+              <v-row>
+                <v-col cols="12">
+                  <v-card class="test-card mb-6" elevation="0" color="#FFF8F5">
+                    <v-card-text class="d-flex flex-column align-center text-center">
+                      <v-icon color="primary" size="48" class="mb-3">mdi-clipboard-text-outline</v-icon>
+                      <h3 class="text-h6 font-weight-bold mb-2">Требуется пройти тест перед откликом</h3>
+                      <p class="mb-4">Пожалуйста, пройдите наш тест и прикрепите скриншоты результатов</p>
+                      <v-btn
+                        href="https://weigroup.ru/test2"
+                        target="_blank"
+                        color="primary"
+                        variant="flat"
+                        class="mb-2"
+                        prepend-icon="mdi-link"
+                      >
+                        Перейти к тесту
+                      </v-btn>
+                      <p class="text-caption text-medium-emphasis mb-0">После завершения теста сохраните скриншоты и загрузите их ниже</p>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="name"
+                    :rules="nameRules"
+                    label="Ваше имя*"
+                    variant="outlined"
+                    color="primary"
+                    required
+                    :density="mobile ? 'comfortable' : 'default'"
+                    prepend-inner-icon="mdi-account-outline"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="email"
+                    :rules="contactRules"
+                    label="Ваша почта или телефон*"
+                    variant="outlined"
+                    color="primary"
+                    required
+                    :density="mobile ? 'comfortable' : 'default'"
+                    prepend-inner-icon="mdi-email-outline"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-card variant="outlined" class="pa-4 upload-card">
+                    <v-card-title class="text-subtitle-1 font-weight-bold d-flex align-center">
+                      <v-icon color="primary" class="mr-2">mdi-cloud-upload-outline</v-icon>
+                      Скриншоты результатов теста*
+                    </v-card-title>
+                    <v-card-text>
+                      <v-file-input
+                        v-model="screenshots"
+                        :rules="screenshotsRules"
+                        label="Добавьте скриншоты"
+                        accept="image/*"
+                        variant="outlined"
+                        color="primary"
+                        multiple
+                        chips
+                        counter
+                        show-size
+                        prepend-icon=""
+                        :density="mobile ? 'compact' : 'default'"
+                        @change="handleFilesUpload"
+                      >
+                        <template v-slot:selection="{ fileNames }">
+                          <v-chip
+                            v-for="fileName in fileNames"
+                            :key="fileName"
+                            color="primary"
+                            variant="outlined"
+                            size="small"
+                            class="mr-2 my-1"
+                            close
+                            @click:close="removeFile(fileName)"
+                          >
+                            {{ fileName }}
+                          </v-chip>
+                        </template>
+                      </v-file-input>
+                      <div class="text-caption text-medium-emphasis">
+                        Можно загрузить до 5 файлов (JPG, PNG). Максимальный размер каждого файла - 5MB
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+
+                <v-col cols="12" class="d-flex" :class="mobile ? 'flex-column-reverse gap-2' : 'justify-space-between'">
+                  <v-btn
+                    type="submit"
+                    :size="mobile ? 'large' : 'large'"
+                    class="submit-btn"
+                    :append-icon="!mobile ? 'mdi-send' : null"
+                    :loading="isLoading"
+                    :disabled="isLoading || !screenshots || screenshots.length === 0"
+                    :block="mobile"
+                    :height="mobile ? '44' : '48'"
+                  >
+                    <template v-slot:loader>
+                      <v-progress-circular indeterminate color="white" :size="mobile ? 20 : 24" width="3"></v-progress-circular>
+                    </template>
+                    {{ mobile ? "Отправить" : "Отправить отклик" }}
+                  </v-btn>
+
+                  <v-btn
+                    variant="text"
+                    :size="mobile ? 'large' : 'large'"
+                    @click="showDialog = false"
+                    :disabled="isLoading"
+                    :block="mobile"
+                  >
+                    Отмена
+                  </v-btn>
+                </v-col>
+
+                <v-col cols="12">
+                  <p class="text-caption text-medium-emphasis">
+                    Нажимая кнопку «отправить», вы соглашаетесь с
+                    <router-link :to="{ name: ROUTES_PATHS.POLICY }" class="text-primary text-decoration-none">
+                      Политикой конфиденциальности
+                    </router-link>
+                  </p>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card-text>
+        </template>
+
+        <template v-else-if="isSubmitted">
+          <div class="success-message pa-4">
+            <v-icon color="success" size="64">mdi-check-circle</v-icon>
+            <h2 class="feedback-title">Отклик успешно отправлен!</h2>
+            <p class="mb-4 text-center">Мы свяжемся с вами в ближайшее время</p>
+          </div>
+        </template>
+        <template v-else-if="isError">
+          <div class="error-message pa-4">
+            <v-icon color="error" size="64">mdi-close-circle</v-icon>
+            <h2 class="feedback-title">Ошибка отправки</h2>
+            <p class="mb-4 text-center">Не удалось отправить отклик. Пожалуйста, попробуйте еще раз.</p>
+            <v-btn color="primary" size="large" @click="retrySubmission" :block="mobile"> Попробовать снова </v-btn>
+          </div>
+        </template>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -270,7 +431,8 @@ const { mobile } = useDisplay();
 const showDialog = ref(false);
 const name = ref("");
 const email = ref("");
-const question = ref("");
+// const question = ref("");
+const screenshots = ref([]);
 const form = ref(null);
 const isSubmitted = ref(false);
 const isLoading = ref(false);
@@ -278,6 +440,21 @@ const isLoading = ref(false);
 // Правила валидации
 const nameRules = computed(() => [(v) => !!v || "Имя обязательно для заполнения"]);
 const contactRules = computed(() => [(v) => !!v || "Контактные данные обязательны"]);
+const screenshotsRules = computed(() => [
+  (v) => (!!v && v.length > 0) || "Необходимо загрузить хотя бы один скриншот",
+  (v) => !v || v.every((file) => file.size < 5000000) || "Каждый файл должен быть меньше 5 MB",
+  (v) => !v || v.length <= 5 || "Можно загрузить не более 5 файлов",
+]);
+
+const handleFilesUpload = (files) => {
+  if (files && files.length > 0) {
+    console.log("Загружено файлов:", files.length);
+  }
+};
+
+const removeFile = (fileName) => {
+  screenshots.value = screenshots.value.filter((file) => file.name !== fileName);
+};
 
 watch(isSubmitted, (newVal) => {
   if (newVal) {
@@ -294,18 +471,65 @@ const vacancyMessage = computed(() => {
   return {
     chat_id: CHATS_ID.BASE,
     topic_id: TOPICS_ID.VACANCIES,
-    text: `📌 Новый отклик на вакансию\nПозиция: Мидл-инженер\nИмя: ${name.value}\nКонтакт: ${email.value}\nОпыт: ${question.value}`,
+    text: `📌 Новый отклик на вакансию\nПозиция: Мидл-инженер\nИмя: ${name.value}\nКонтакт: ${email.value}\nСкриншотов: ${
+      screenshots.value?.length || 0
+    }`,
   };
 });
 
-// Сброс формы
+const photo = computed(() => {
+  return {
+    screenshots: screenshots,
+    name: name,
+    email: email,
+  };
+});
+
+// Сброс формы (обновлено)
 function resetForm() {
-  // isSubmitted.value = false;
   name.value = "";
   email.value = "";
-  question.value = "";
+  // question.value = "";
+  screenshots.value = [];
 }
 const isError = ref(false);
+
+const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+import axios from "axios";
+const sendFilesToTelegram = async () => {
+  try {
+    // Сначала создаем массив media для sendMediaGroup
+    const media = screenshots.value.map((file, index) => ({
+      type: "photo",
+      media: `attach://photo${index}`,
+      caption: index === 0 ? `📌 Отклик на вакансию\nИмя: ${name.value}\nКонтакт: ${email.value}` : undefined,
+    }));
+
+    // Создаем FormData и добавляем файлы
+    const formData = new FormData();
+    formData.append("chat_id", CHATS_ID.BASE);
+    formData.append("message_thread_id", TOPICS_ID.VACANCIES); // для тем форума
+
+    // Добавляем каждый файл с уникальным именем
+    screenshots.value.forEach((file, index) => {
+      formData.append(`photo${index}`, file);
+    });
+
+    // Добавляем media как JSON строку
+    formData.append("media", JSON.stringify(media));
+
+    const response = await axios.post(`https://api.telegram.org/bot${token}/sendMediaGroup`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка отправки файлов:", error.response?.data || error.message);
+    throw error;
+  }
+};
 
 // Отправка формы
 async function submitVacancyApplication() {
@@ -318,6 +542,10 @@ async function submitVacancyApplication() {
 
   try {
     await sendTextMessage(vacancyMessage.value);
+    // Здесь нужно добавить отправку файлов screenshots.value
+    if (screenshots.value.length > 0) {
+      await sendFilesToTelegram();
+    }
     isSubmitted.value = true;
   } catch (error) {
     console.error("Ошибка отправки:", error);
@@ -359,7 +587,7 @@ const benefits = ref([
   {
     icon: "mdi-chart-line",
     title: "Развитие",
-    description: "Постоянный контакт с руководителем и командой для развития и роста в новых направлениях",
+    description: "Постоянный контакт с руководителем и командой для развития и роста",
   },
 
   {
@@ -367,11 +595,11 @@ const benefits = ref([
     title: "Доход",
     description: "Возможность самостоятельно влиять на свой доход",
   },
-  // {
-  //   icon: "mdi-office-building",
-  //   title: "Стабильность",
-  //   description: "Работа в стабильной компании с постоянным потоком клиентов",
-  // },
+  {
+    icon: "mdi-office-building",
+    title: "Стабильность",
+    description: "Работа в стабильной компании с постоянным потоком клиентов",
+  },
 ]);
 
 const projects = ref([
@@ -390,18 +618,20 @@ const projects = ref([
 ]);
 
 const requirements = ref([
-  "Знание технологий работ нулевого цикла(свайные работы, мнженерные сети)",
-  "Базовые знания технологий благоустройства загородных участков",
-  "Умение составлять сметы",
-
-  "Обучаемость, желание стать Экспертом в своем навправлении",
+  "Знание технологий работ нулевого цикла (свайные работы, инженерные сети)",
+  "Знание технологий базового благоустройства участков",
+  "Обучаемость, желание совершенствоваться в каждом направлении и изучать новые",
+  "Организованность, умение планировать свой график",
   "Ответственность, внимательность к деталям",
-  "Организованость, умение планировать свой график",
   "Желание хорошо зарабатывать",
-  "Коммуникабельность, умение хорошо понимать и консультировать клиента по всем работам",
 ]);
 
 const advantages = ref([
+  {
+    icon: "mdi-briefcase",
+    title: "Опыт работы",
+    description: "Производитель работ нулевого цикла от 1 года",
+  },
   {
     icon: "mdi-water-pump",
     title: "Знания технологий",
@@ -411,21 +641,11 @@ const advantages = ref([
     icon: "mdi-flash",
     title: "Навыки электромонтажа",
   },
-  {
-    icon: "mdi-handshake",
-    title: "Клиентоориентированность",
-    description: "Умение самостоятельно организовать работу с клиентом, навыки работы с подрядчиками",
-  },
 
   {
     icon: "mdi-school",
     title: "Базовые навыки владения",
     description: "AutoCAD, Excel",
-  },
-  {
-    icon: "mdi-target",
-    title: "Сейлз-менеджмент",
-    description: "Базовые навыки менеджера, умение продавать клиенту необходимые услуги",
   },
   {
     icon: "mdi-leaf",
@@ -435,34 +655,13 @@ const advantages = ref([
 
 const works = ref([
   {
-    icon: "mdi-clipboard-check-multiple",
-    title: "Организация и контроль выполнения работ по нулевому циклу",
+    icon: "mdi-home-plus",
+    title: "Монтаж обвязки дома",
     description: "",
   },
   {
-    icon: "mdi-car-traction-control",
-    title: "Первичный выезд на участок",
-    description: "",
-  },
-  {
-    icon: "mdi-file-document-outline",
-    title: "Составление смет и ведение клиентов",
-    description: "",
-  },
-
-  {
-    icon: "mdi-account-cash",
-    title: "Составление заявок на материалы, взаимодействие с поставщиками",
-    description: "",
-  },
-  {
-    icon: "mdi-timer-sand",
-    title: "Контроль сроков и качества выполнения работ",
-    description: "",
-  },
-  {
-    icon: "mdi-hard-hat",
-    title: "Монтаж инженерных сетей(кроме кессонов и обвязки скважин)",
+    icon: "mdi-pipe",
+    title: "Монтаж инженерных сетей",
     description: "",
   },
   {
@@ -470,6 +669,7 @@ const works = ref([
     title: "Монтаж свайно-винтовых фундаментов",
     description: "",
   },
+
   {
     icon: "mdi-leaf-circle",
     title: "Базовое благоустройство",
@@ -481,27 +681,23 @@ const workConditions = ref([
   {
     icon: "mdi-calendar",
     title: "График",
-    description: "Плавающий график работы, инженер планирует свой график на неделю индивидуально",
+    description: "Плавающий график работы",
   },
   {
     icon: "mdi-car",
     title: "Транспорт",
-    description: "Разъездной характер работы. Необходимо наличие собственного автомобиля",
+    description: "Разъездной характер работы. Необходимо наличие автомобиля и желание много ездить",
   },
   {
     icon: "mdi-currency-rub",
     title: "Оплата",
     description: "Сдельная оплата труда",
   },
+
   {
-    icon: "mdi-office-building",
-    title: "Стабильность",
-    description: "Работа в стабильной компании с постоянным потоком клиентов",
-  },
-  {
-    icon: "mdi-cash-multiple",
-    title: "Доход",
-    description: "Возможность самостоятельно влиять на свой доход",
+    icon: "mdi-account-arrow-up",
+    title: "Возможности роста",
+    description: "Освоение новых навыков в области нулевого цикла, карьерный рост внутри компании",
   },
   // {
   //   icon: "mdi-map-marker",
@@ -950,5 +1146,93 @@ const workConditions = ref([
 .mobile-card .v-card-text {
   flex: 1;
   overflow-y: auto;
+}
+.test-card {
+  border-left: 4px solid #ff8c42;
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(234, 91, 12, 0.1);
+  }
+}
+
+.upload-card {
+  border-radius: 12px !important;
+  border: 1px dashed rgba(234, 91, 12, 0.3) !important;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #ff8c42 !important;
+    background-color: rgba(255, 140, 66, 0.03);
+  }
+}
+
+.v-field--outlined {
+  border-radius: 8px !important;
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #ea5b0c, #ff8c42) !important;
+  color: white !important;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(234, 91, 12, 0.3);
+  }
+
+  &:disabled {
+    background: #e0e0e0 !important;
+    color: #9e9e9e !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Анимации */
+.v-icon {
+  transition: all 0.2s ease;
+}
+
+.v-chip--outlined:hover {
+  transform: scale(1.02);
+}
+
+/* Мобильные стили */
+@media (max-width: 600px) {
+  .feedback-card {
+    padding: 16px;
+    border-radius: 0 !important;
+  }
+
+  .feedback-title {
+    font-size: 1.25rem;
+    padding: 8px 0 16px !important;
+  }
+
+  .test-card {
+    padding: 16px !important;
+
+    .v-icon {
+      font-size: 36px !important;
+    }
+  }
+
+  .upload-card {
+    padding: 12px !important;
+  }
+
+  .v-field--outlined {
+    font-size: 0.9rem;
+  }
+
+  .v-btn {
+    font-size: 0.9rem;
+    height: 44px;
+  }
 }
 </style>
