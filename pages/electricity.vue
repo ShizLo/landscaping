@@ -4,7 +4,8 @@ const catalogStore = useCatalogStore();
 
 import { useHead } from "#app";
 useHead({
-  title: "Электромонтажные работы и уличное освещение под ключ | БИС",
+  title: "Электромонтажные работы и уличное освещение под ключ",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

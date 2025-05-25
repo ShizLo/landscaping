@@ -3,7 +3,8 @@ import { useCatalogStore } from "@/stores/modules/catalog.store";
 
 import { useHead } from "#app";
 useHead({
-  title: "Свайный фундамент под ключ — винтовые сваи с гарантией | БИС",
+  title: "Свайный фундамент под ключ — винтовые сваи с гарантией",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

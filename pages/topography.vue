@@ -4,7 +4,8 @@ import { useCatalogStore } from "@/stores/modules/catalog.store";
 const catalogStore = useCatalogStore();
 import { useHead } from "#app";
 useHead({
-  title: "Топосъемка и проектирование участка — геодезия, 3D-планирование | БИС",
+  title: "Топосъемка и проектирование участка — геодезия, 3D-планирование",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

@@ -5,7 +5,8 @@ const catalogStore = useCatalogStore();
 
 import { useHead } from "#app";
 useHead({
-  title: "Заборы из штакетника, сетки Гиттер и профнастила — монтаж под ключ | БИС",
+  title: "Заборы из штакетника, сетки Гиттер и профнастила — монтаж под ключ",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

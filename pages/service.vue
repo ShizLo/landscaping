@@ -3,7 +3,8 @@ import { defineAsyncComponent, onMounted, reactive } from "vue";
 import { useCatalogStore } from "@/stores/modules/catalog.store";
 import { useHead } from "#app";
 useHead({
-  title: "Обслуживание и ремонт инженерных систем | Септики, водоснабжение, электроснабжение | БИС",
+  title: "Обслуживание и ремонт инженерных систем | Септик под ключ, водоснабжение, электроснабжение",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

@@ -3,7 +3,8 @@ import { useCatalogStore } from "@/stores/modules/catalog.store";
 
 import { useHead } from "#app";
 useHead({
-  title: "Дренаж участка и ливневая канализация — защита от подтопления | БИС",
+  title: "Дренаж участка и ливневая канализация — защита от подтопления",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

@@ -5,7 +5,8 @@ const catalogStore = useCatalogStore();
 
 import { useHead } from "#app";
 useHead({
-  title: "Благоустройство участков и инженерные сети под ключ | БИС",
+  title: "Благоустройство и инженерные сети",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",

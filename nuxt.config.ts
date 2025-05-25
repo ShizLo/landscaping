@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://spb-bis.ru",
+    },
+  },
   app: {
     head: {
       meta: [
@@ -48,11 +53,16 @@ export default defineNuxtConfig({
     "nuxt-yandex-metrika",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
+    // "nuxt-seo-utils",
     "@nuxt/icon",
+    "@nuxtjs/seo",
   ],
+  // seo: {
+  //   fallbackTitle: false,
+  // },
   site: {
     url: "https://spb-bis.ru",
-    name: "Благоустройство участков и инженерные сети под ключ | БИС",
+    name: "БИС",
   },
   yandexMetrika: {
     id: "101887232",

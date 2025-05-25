@@ -3,7 +3,8 @@ import { useCatalogStore } from "@/stores/modules/catalog.store";
 
 import { useHead } from "#app";
 useHead({
-  title: "Очистка воды и водоподготовка — фильтры, умягчение, обезжелезивание | БИС",
+  title: "Очистка воды и водоподготовка — фильтры, умягчение, обезжелезивание",
+  titleTemplate: "%s %separator %siteName",
   meta: [
     {
       name: "description",
