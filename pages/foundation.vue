@@ -200,19 +200,21 @@ const feedbackForm = reactive({
 });
 </script>
 <template>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <banner
-    bannerText="Монтаж фундамента на винтовых сваях"
-    bannerDescription="Быстрое, надежное и экономичное решение для строительства. Обеспечивает прочность основания и подходит для любых грунтовых условий. Различное назначение: фундамент для дома, хоз. построек, забора, фундамент под печти или доп оборудование. Везде где требуется обеспечить жесткое статичное основание."
-    :bannerPrice="state.bannerPrice"
-    @isVisible="visibleForm()"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по фундаменту" />
+  <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <banner
+      bannerText="Монтаж фундамента на винтовых сваях"
+      bannerDescription="Быстрое, надежное и экономичное решение для строительства. Обеспечивает прочность основания и подходит для любых грунтовых условий. Различное назначение: фундамент для дома, хоз. построек, забора, фундамент под печти или доп оборудование. Везде где требуется обеспечить жесткое статичное основание."
+      :bannerPrice="state.bannerPrice"
+      @isVisible="visibleForm()"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по фундаменту" />
 
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+    <WorkOrder :data="dataOrder" title="Как мы работаем" />
+    <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
+    <PopularServices title="Популярные услуги" />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

@@ -366,19 +366,10 @@ a {
 <script>
 export default {
   mounted() {
-    document.title = "Политика конфиденциальности | SPB-BIS";
-    window.scrollTo(0, 0);
-  },
-  metaInfo() {
-    return {
+    useHead({
       title: "Политика конфиденциальности",
-      meta: [
-        {
-          name: "description",
-          content: "Политика обработки персональных данных сайта SPB-BIS",
-        },
-      ],
-    };
+      titleTemplate: "%s %separator %siteName",
+    });
   },
 };
 </script>

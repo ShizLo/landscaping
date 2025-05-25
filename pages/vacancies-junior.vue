@@ -329,6 +329,10 @@ import { ROUTES_PATHS } from "../assets/constants";
 import { CHATS_ID, TOPICS_ID } from "../services/botService";
 import { sendTextMessage } from "../services/botService";
 import { useRoute } from "vue-router";
+useHead({
+  title: "Вакансия",
+  titleTemplate: "%s %separator %siteName",
+});
 
 const route = useRoute();
 const routeMetaTitle = computed(() => route.meta?.title || "Стандартный заголовок");

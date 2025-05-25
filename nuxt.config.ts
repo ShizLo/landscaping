@@ -7,6 +7,8 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
+    // layoutTransition: { name: "layout", mode: "out-in" },
     head: {
       meta: [
         { name: "geo.region", content: "RU-LEN" },
@@ -53,13 +55,9 @@ export default defineNuxtConfig({
     "nuxt-yandex-metrika",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    // "nuxt-seo-utils",
     "@nuxt/icon",
     "@nuxtjs/seo",
   ],
-  // seo: {
-  //   fallbackTitle: false,
-  // },
   site: {
     url: "https://spb-bis.ru",
     name: "БИС",

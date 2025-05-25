@@ -674,20 +674,22 @@ const feedbackForm = reactive({
 </script>
 
 <template>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <Banner
-    style="white-space: pre-line"
-    bannerText="Инженерные коммуникации и благоустройство участка"
-    :bannerPrice="state.bannerPrice"
-    @isVisible="visibleForm()"
-    stikers="true"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
-  <BisService title="БИС Сервис" :data="dataBisService" />
-  <WorksSlider :data="dataWork" />
-  <WorkOrder :data="dataOrder" title="За что нас ценят" />
-  <Partners />
-  <AboutUs />
-  <Commands />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <Banner
+      style="white-space: pre-line"
+      bannerText="Инженерные коммуникации и благоустройство участка"
+      :bannerPrice="state.bannerPrice"
+      @isVisible="visibleForm()"
+      stikers="true"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
+    <BisService title="БИС Сервис" :data="dataBisService" />
+    <WorksSlider :data="dataWork" />
+    <WorkOrder :data="dataOrder" title="За что нас ценят" />
+    <Partners />
+    <AboutUs />
+    <Commands />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>

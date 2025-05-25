@@ -277,24 +277,14 @@ const serviceItems = [
       </v-card>
     </v-navigation-drawer>
 
-    <v-main>
-      <NuxtPage />
+    <v-main style="padding-top: 100px">
+      <div><NuxtPage /></div>
     </v-main>
     <Footer />
   </v-app>
 </template>
 
-<style lang="scss" scoped>
-// .page-enter-active,
-// .page-leave-active {
-//   transition: all 1s;
-// }
-// .page-enter-from,
-// .page-leave-to {
-//   opacity: 0;
-//   filter: blur(1rem);
-// }
-
+<style lang="scss">
 .v-list-group__items .v-list-item {
   padding-inline-start: 24px !important;
 }

@@ -75,13 +75,12 @@ picture {
   min-height: 100%;
 }
 // //<Отрисовка анимаций страниц для nuxt>================================================================================
-// .page-enter-active,
-// .page-leave-active {
-//   transition: all 1s;
-// }
-// .page-enter-from,
-// .page-leave-to {
-//   opacity: 0;
-//   transform: translateY(20px);
-// }
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.4s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
 // //</Отрисовка анимаций страниц для nuxt>===============================================================================

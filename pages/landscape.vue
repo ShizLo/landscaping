@@ -1008,6 +1008,10 @@
 <script setup>
 import { onMounted, computed, reactive, ref } from "vue";
 import { sendMessageTG, CHATS_ID, TOPICS_ID } from "../services/botService";
+useHead({
+  title: "Анкета по проекту",
+  titleTemplate: "%s %separator %siteName",
+});
 
 const snackbar = reactive({
   value: false,

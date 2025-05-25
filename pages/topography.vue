@@ -283,19 +283,21 @@ const feedBackData = ["Эскизный проект", "Ландшафтный �
 </script>
 
 <template>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <banner
-    style="white-space: pre-line"
-    bannerText="Топографическая съемка и проектирование"
-    bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
-    :bannerPrice="state.bannerPrice"
-    :desctiption="desctription"
-    @isVisible="visibleForm()"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги" />
-  <PriceList />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <banner
+      style="white-space: pre-line"
+      bannerText="Топографическая съемка и проектирование"
+      bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
+      :bannerPrice="state.bannerPrice"
+      :desctiption="desctription"
+      @isVisible="visibleForm()"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги" />
+    <PriceList />
+    <PopularServices title="Популярные услуги" />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

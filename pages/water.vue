@@ -224,20 +224,22 @@ const feedbackForm = reactive({
 </script>
 
 <template>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <banner
-    bannerText="Водоснабжение и очистка воды в частном доме"
-    bannerDescription="Одна из основных задач при обустройстве загородного дома организация водоснабжения.
+  <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <banner
+      bannerText="Водоснабжение и очистка воды в частном доме"
+      bannerDescription="Одна из основных задач при обустройстве загородного дома организация водоснабжения.
 В основном мы рекомендуем бурить скважины на воду, но в некоторых районах за счет особенностей экосистемы применяются и другие источники воды (колодец, накопительные ёмкости).
 Кроме источника воды потребуется монтаж соответствующего оборудования. У нас есть для Вас решение."
-    :bannerPrice="state.bannerPrice"
-    @isVisible="visibleForm()"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по водоснабжению" />
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+      :bannerPrice="state.bannerPrice"
+      @isVisible="visibleForm()"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по водоснабжению" />
+    <WorkOrder :data="dataOrder" title="Как мы работаем" />
+    <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
+    <PopularServices title="Популярные услуги" />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

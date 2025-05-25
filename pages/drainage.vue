@@ -233,18 +233,20 @@ const feedbackForm = reactive({
 </script>
 
 <template>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <banner
-    style="white-space: pre-line"
-    bannerText="Ливневые канализации и дренаж участка"
-    bannerDescription="Сбор и отвод чистых вод от дренажных, водосточных систем с кровли и террасс, отведение очищенных вод из станции биологической очистки. Устройство ливневой канализации позволяет отвести поверхностные и грунтовые воды в общую систему дренажа (канавы, поселковая канализация) максимально эффективным и эстетичным образом. На низких участках возможно обустройство накопительного колодца и принудительный подъем и выброс воды дренажными насосами."
-    :bannerPrice="bannerPrice"
-    @isVisible="visibleForm()"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <banner
+      style="white-space: pre-line"
+      bannerText="Ливневые канализации и дренаж участка"
+      bannerDescription="Сбор и отвод чистых вод от дренажных, водосточных систем с кровли и террасс, отведение очищенных вод из станции биологической очистки. Устройство ливневой канализации позволяет отвести поверхностные и грунтовые воды в общую систему дренажа (канавы, поселковая канализация) максимально эффективным и эстетичным образом. На низких участках возможно обустройство накопительного колодца и принудительный подъем и выброс воды дренажными насосами."
+      :bannerPrice="bannerPrice"
+      @isVisible="visibleForm()"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
+    <WorkOrder :data="dataOrder" title="Как мы работаем" />
+    <PopularServices title="Популярные услуги" />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

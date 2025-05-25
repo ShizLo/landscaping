@@ -4,6 +4,10 @@ import { ralColorMap, ralColors, powderColors, powderColorMap } from "../data/ra
 import { sendTextMessage, sendMessageTG } from "../services/botService";
 import { CHATS_ID, TOPICS_ID } from "../services/botService";
 import { useDisplay } from "vuetify";
+useHead({
+  title: "Калькулятор забора",
+  titleTemplate: "%s %separator %siteName",
+});
 
 const steps = ref(["Контактная информация", "Участки забора", "Монтаж и доставка", "Подтверждение"]);
 const isStep1Valid = ref(false);

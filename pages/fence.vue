@@ -246,6 +246,7 @@ const feedbackForm = reactive({
 });
 </script>
 <template>
+  <div>
   <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <banner
     bannerText="Заборы и ограждения"
@@ -258,6 +259,7 @@ const feedbackForm = reactive({
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.servicePrice" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
+</div>
 </template>
 
 <style lang="scss" scoped></style>

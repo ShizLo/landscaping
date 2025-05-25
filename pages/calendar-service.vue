@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-card class="service-calendar mx-auto" max-width="600" elevation="5">
     <v-card-title class="d-flex justify-space-between align-center py-6 bg-primary">
       <h2 class="text-h5 font-weight-bold text-white">График технического обслуживания</h2>
@@ -243,6 +244,7 @@
       </v-card>
     </v-dialog>
   </v-card>
+</div>
 </template>
 
 <script>

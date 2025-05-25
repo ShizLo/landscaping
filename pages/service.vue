@@ -396,12 +396,14 @@ const dataWork = [
 </script>
 
 <template>
-  <BannerFeedBack />
-  <SeptikServices title="Наши услуги" :dataServices="state.dataServices" :dopServices="state.dopServices" />
-  <VariantServiceSlider title="Варианты обслуживания" />
-  <WorksSlider title="Наши работы" :data="dataWork" />
-  <PriceExpansion />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  <div>
+    <BannerFeedBack />
+    <SeptikServices title="Наши услуги" :dataServices="state.dataServices" :dopServices="state.dopServices" />
+    <VariantServiceSlider title="Варианты обслуживания" />
+    <WorksSlider title="Наши работы" :data="dataWork" />
+    <PriceExpansion />
+    <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

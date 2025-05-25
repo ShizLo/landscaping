@@ -338,6 +338,10 @@ export default {
   mounted() {
     document.title = "Пользовательское соглашение | SPB-BIS";
     window.scrollTo(0, 0);
+    useHead({
+      title: "Пользовательское соглашение",
+      titleTemplate: "%s %separator %siteName",
+    });
   },
   metaInfo() {
     return {

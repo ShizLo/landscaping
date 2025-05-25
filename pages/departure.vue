@@ -2,6 +2,10 @@
 import { onMounted, onUnmounted, reactive, ref, computed } from "vue";
 import axios from "axios";
 import { sendMessageTG, TOPICS_ID, CHATS_ID, token } from "../services/botService";
+useHead({
+  title: "Первичный выезд",
+  titleTemplate: "%s %separator %siteName",
+});
 
 const totalFileSize = computed(() => {
   const mediaSize = previews.value.reduce((acc, file) => acc + (file.file?.size || 0), 0);
