@@ -284,7 +284,7 @@ const serviceItems = [
   </v-app>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-list-group__items .v-list-item {
   padding-inline-start: 24px !important;
 }
