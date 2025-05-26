@@ -4,13 +4,20 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://spb-bis.ru",
+      // trailingSlash: {
+      //   enabled: true, // false - убирать слеши, true - добавлять
+      //   exclude: ["/special-page", "/api/**"],
+      // },
     },
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+
     // layoutTransition: { name: "layout", mode: "out-in" },
     head: {
+      // charset: "utf-8",
       meta: [
+        // { "http-equiv": "Content-Type", content: "text/html; charset=UTF-8" },
         { name: "geo.region", content: "RU-LEN" },
         { name: "geo.placename", content: "Санкт-Петербург и Ленинградская область" },
         { name: "google-site-verification", content: "eSWBoZSLK1cegGffHHnDzwhIlnbTnasVKU4SgdGfz38" },
@@ -41,10 +48,34 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   ssr: true,
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "/fence", "/privacy-policy", "/water", "/foundation", "/topography", "/electricity", "/drainage", "/service"],
+    },
+  },
+
   routeRules: {
     "/departure": { ssr: false },
     "/icons/**": { robots: false },
+
+    // "/**": { trailingSlash: true }, // или false
+    // "/**/":
+    //   process.env.NUXT_PUBLIC_TRAILING_SLASH_ENABLED === "true"
+    //     ? { redirect: { to: "/", statusCode: 200 } }
+    //     : { redirect: { to: "/:path", statusCode: 301 } },
   },
+  // nitro: {
+  //   prerender: {
+  //     routes: [
+  //       "/",
+  //       "/fence",
+  //       "/service",
+  //       // все остальные маршруты без слеша
+  //     ],
+  //     crawlLinks: true,
+  //   },
+  // },
   css: ["./assets/styles/main.scss"],
   modules: [
     "@nuxt/content",
@@ -53,10 +84,10 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "vuetify-nuxt-module",
     "nuxt-yandex-metrika",
-    "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "@nuxt/icon",
     "@nuxtjs/seo",
+    "@nuxtjs/sitemap", // Должен быть в конце?
   ],
   site: {
     url: "https://spb-bis.ru",
@@ -80,6 +111,7 @@ export default defineNuxtConfig({
   },
   robots: {
     disallow: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
+    // allow: ["/fence/"],
   },
   icon: {
     customCollections: [
