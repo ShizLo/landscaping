@@ -363,13 +363,10 @@ a {
 }
 </style>
 
-<script>
-export default {
-  mounted() {
-    useHead({
-      title: "Политика конфиденциальности",
-      titleTemplate: "%s %separator %siteName",
-    });
-  },
-};
+<script setup>
+import { useHead } from "#app";
+useHead({
+  title: "Политика конфиденциальности",
+  titleTemplate: "%s %separator %siteName",
+});
 </script>

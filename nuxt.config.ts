@@ -4,16 +4,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://spb-bis.ru",
-      // trailingSlash: {
-      //   enabled: true, // false - убирать слеши, true - добавлять
-      //   exclude: ["/special-page", "/api/**"],
-      // },
     },
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
-
-    // layoutTransition: { name: "layout", mode: "out-in" },
     head: {
       // charset: "utf-8",
       meta: [
@@ -58,24 +52,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/departure": { ssr: false },
     "/icons/**": { robots: false },
-
-    // "/**": { trailingSlash: true }, // или false
-    // "/**/":
-    //   process.env.NUXT_PUBLIC_TRAILING_SLASH_ENABLED === "true"
-    //     ? { redirect: { to: "/", statusCode: 200 } }
-    //     : { redirect: { to: "/:path", statusCode: 301 } },
   },
-  // nitro: {
-  //   prerender: {
-  //     routes: [
-  //       "/",
-  //       "/fence",
-  //       "/service",
-  //       // все остальные маршруты без слеша
-  //     ],
-  //     crawlLinks: true,
-  //   },
-  // },
   css: ["./assets/styles/main.scss"],
   modules: [
     "@nuxt/content",
@@ -111,7 +88,23 @@ export default defineNuxtConfig({
   },
   robots: {
     disallow: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
-    // allow: ["/fence/"],
+    groups: [
+      {
+        userAgent: "Yandex",
+        disallow: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
+        allow: ["/"],
+      },
+      {
+        userAgent: "Googlebot",
+        disallow: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
+        allow: ["/"],
+      },
+      {
+        userAgent: "*",
+        disallow: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
+        allow: ["/"],
+      },
+    ],
   },
   icon: {
     customCollections: [

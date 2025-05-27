@@ -39,7 +39,8 @@ const animateGaranty = (el) => {
 const emit = defineEmits(["isVisible"]);
 function goTo(path) {
   if (path) {
-    router.push(path);
+    // router.push(path);
+    return;
   } else {
     emit("isVisible");
   }
@@ -105,7 +106,13 @@ onMounted(() => {
               v-on:mouseleave="leaveHover"
               :class="item.class"
             >
-              <a
+              <!-- <a
+                :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
+                class="services__item-link item"
+                @click="goTo(item.routePath)"
+              > -->
+              <nuxt-link
+                :to="{ name: item.routePath }"
                 :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
                 class="services__item-link item"
                 @click="goTo(item.routePath)"
@@ -136,7 +143,8 @@ onMounted(() => {
                     </div>
                   </div>
                 </div>
-              </a>
+                <!-- </a> -->
+              </nuxt-link>
             </div>
           </div>
         </div>

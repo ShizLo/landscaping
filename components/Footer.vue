@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
         <div class="footer__links">
           <nuxt-link :to="{ name: ROUTES_PATHS.POLICY }" class="footer__link">Политика конфиденциальности</nuxt-link>
           <nuxt-link :to="{ name: ROUTES_PATHS.USERAGREEMENT }" class="footer__link">Пользовательское соглашение</nuxt-link>
-          <nuxt-link :to="{ name: ROUTES_PATHS.DEVELOP }" class="footer__link">Карта сайта</nuxt-link>
+          <a href="/sitemap.xml" class="footer__link">Карта сайта</a>
         </div>
       </div>
     </div>
