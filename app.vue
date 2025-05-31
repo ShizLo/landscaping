@@ -147,17 +147,19 @@ const serviceItems = [
       hide-on-scroll
       scroll-threshold="100"
     >
-      <v-container class="d-flex align-center">
+      <v-container class="d-flex align-center _container px-md-0">
         <v-app-bar-nav-icon class="hidden-md-and-up" @click="mobileMenu = !mobileMenu" size="x-large" />
-        <v-img :src="logo" alt="Благоустройство и инженерные сети" max-width="200" class="mx-auto mx-md-0" contain />
+        <!-- <v-img :src="logo" alt="Благоустройство и инженерные сети" max-width="200" class="mx-auto mx-md-0" contain /> -->
+        <icon class="mx-auto mx-md-0" style="width: 200px; height: 200px" name="bis:logo"></icon>
         <v-menu v-model="catalogMenu" :close-on-content-click="false" transition="slide-y-transition" offset-y>
           <template #activator="{ props }">
             <v-btn v-bind="props" variant="flat" color="orange-darken-2" class="ml-12 hidden-sm-and-down catalog-btn" size="x-large">
               <template #prepend>
-                <v-icon icon="mdi-menu" size="x-large" />
+                <!-- <v-icon icon="mdi-menu" size="x-large" /> -->
+                <icon name="mdi-menu" size="x-large" />
               </template>
               Каталог
-              <v-icon icon="mdi-chevron-down" class="ml-2" />
+              <icon name="mdi-chevron-down" class="ml-2" />
             </v-btn>
           </template>
 
@@ -187,15 +189,17 @@ const serviceItems = [
 
         <div class="ml-auto d-flex align-center gap-3">
           <v-btn
-            icon="mdi-whatsapp"
             color="orange-darken-2"
             variant="text"
             size="x-large"
             class="hidden-sm-and-down mr-4"
             href="https://wa.me/79112775607"
             target="_blank"
-          />
-          <v-btn v-if="!mobile" variant="flat" color="orange-darken-2" prepend-icon="mdi-phone" href="tel:+79112775607">
+          >
+            <icon name="mdi-whatsapp" size="36"></icon>
+          </v-btn>
+          <v-btn v-if="!mobile" variant="flat" color="orange-darken-2" href="tel:+79112775607">
+            <template v-slot:prepend><icon name="mdi-phone"></icon></template>
             +7 911 277-56-07
           </v-btn>
         </div>

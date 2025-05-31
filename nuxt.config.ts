@@ -9,13 +9,20 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
+      link: [
+        { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" },
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+        { rel: "shortcut icon", href: "/favicon.ico" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+      ],
       // charset: "utf-8",
       meta: [
-        // { "http-equiv": "Content-Type", content: "text/html; charset=UTF-8" },
         { name: "geo.region", content: "RU-LEN" },
         { name: "geo.placename", content: "Санкт-Петербург и Ленинградская область" },
         { name: "google-site-verification", content: "eSWBoZSLK1cegGffHHnDzwhIlnbTnasVKU4SgdGfz38" },
         { name: "yandex-verification", content: "aff45da8bad2b8c5" },
+        { name: "apple-mobile-web-app-title", content: "БИС" },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://spb-bis.ru" },
         { property: "og:title", content: "БИС: благоустройство и инженерные сети" },
@@ -108,6 +115,11 @@ export default defineNuxtConfig({
   },
   icon: {
     customCollections: [
+      {
+        prefix: "bis",
+        dir: "./assets/media/icons/common/social",
+        normalizeIconName: true, //TODO: разобратья
+      },
       {
         prefix: "my-icon",
         dir: "./assets/iconBIS",

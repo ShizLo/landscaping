@@ -32,7 +32,12 @@ onMounted(() => {
         <div class="partner-card">
           <a href="https://holtsovhouse.ru/" target="_blank" rel="noopener noreferrer" class="partner-link">
             <div class="partner-image-container">
-              <img src="../assets/images/holtsovhouse.webp" alt="HoltsovHouse" class="partner-image" loading="lazy" />
+              <img
+                src="/media/images/content/partners/partners-holtsovhouse.webp"
+                alt="HoltsovHouse"
+                class="partner-image"
+                loading="lazy"
+              />
               <div class="image-overlay"></div>
             </div>
             <div class="partner-info">
@@ -50,7 +55,7 @@ onMounted(() => {
         <div class="partner-card">
           <a href="https://scouthouse.ru/" target="_blank" rel="noopener noreferrer" class="partner-link">
             <div class="partner-image-container">
-              <img src="../assets/images/ScoutHouse.webp" alt="ScoutHouse" class="partner-image" loading="lazy" />
+              <img src="/media/images/content/partners/partners-scouthouse.webp" alt="ScoutHouse" class="partner-image" loading="lazy" />
               <div class="image-overlay"></div>
             </div>
             <div class="partner-info">
@@ -68,7 +73,7 @@ onMounted(() => {
         <div class="partner-card">
           <a href="https://novodacha.com/" target="_blank" rel="noopener noreferrer" class="partner-link">
             <div class="partner-image-container">
-              <img src="../assets/images/IMG_4429-min.webp" alt="NovoDacha" class="partner-image" loading="lazy" />
+              <img src="/media/images/content/partners/partners-scouthouse.webp" alt="NovoDacha" class="partner-image" loading="lazy" />
               <div class="image-overlay"></div>
             </div>
             <div class="partner-info">

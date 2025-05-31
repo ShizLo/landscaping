@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
             </h3>
             <div class="menu__items" :class="{ visible: !isMobile || menuStates.contacts }">
               <a href="#" class="menu__item contact-link">
-                <img src="../assets/icons/footer-telegram.svg" alt="Telegram" class="contact-icon" />
+                <img src="../assets/media/icons/common/social/telegram.svg" alt="Telegram" class="contact-icon" />
                 <span>Telegram</span>
               </a>
               <a href="#" class="menu__item contact-link">

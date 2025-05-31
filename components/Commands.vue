@@ -37,7 +37,7 @@ onMounted(() => {
         <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('0') }" data-index="0">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/serg.png" alt="Сергей Поляков" class="team-photo" />
+              <img src="/media/images/content/team/team-polyakov.png" alt="Сергей Поляков" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -68,7 +68,7 @@ onMounted(() => {
         <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('1') }" data-index="1">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/kirillov.jpeg" alt="Андрей Кириллов" class="team-photo" />
+              <img src="/media/images/content/team/team-kirillov.jpeg" alt="Андрей Кириллов" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -99,7 +99,7 @@ onMounted(() => {
         <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('2') }" data-index="2">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/voronin.png" alt="Сергей Воронин" class="team-photo" />
+              <img src="/media/images/content/team/team-voronin.png" alt="Сергей Воронин" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -131,7 +131,7 @@ onMounted(() => {
         <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('3') }" data-index="3">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/4.jpeg" alt="Алексей Качерук" class="team-photo" />
+              <img src="/media/images/content/team/team-kacheruk.jpeg" alt="Алексей Качерук" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -160,7 +160,7 @@ onMounted(() => {
         <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('4') }" data-index="3">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/2+.jpg" alt="Софья Никоненко" class="team-photo" />
+              <img src="/media/images/content/team/team-nikonenko.jpg" alt="Софья Никоненко" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -176,20 +176,17 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <!-- <a href="tel:+79999999999" class="contact-link">
-                  <v-icon>mdi-phone</v-icon>
+                <a href="https://t.me/@Nikonenko_Sofya" class="contact-link">
+                  <icon name="bis:telegram" style="color: red"></icon>
                 </a>
-                <a href="mailto:a.kacheruk@bis.ru" class="contact-link">
-                  <v-icon>mdi-email</v-icon>
-                </a> -->
               </div>
             </div>
           </div>
         </div>
-        <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('5') }" data-index="1">
+        <!-- <div class="team__item" :class="{ 'animate__animated animate__fadeInUp': animatedItems.includes('5') }" data-index="1">
           <div class="team-card">
             <div class="card-image">
-              <img src="/images/command/1.jpg" alt="Евгений Кузнецов" class="team-photo" />
+              <img src="/media/images/content/team/team-unknown.jpg" alt="Евгений Кузнецов" class="team-photo" />
               <div class="image-overlay"></div>
             </div>
             <div class="card-content">
@@ -206,16 +203,16 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <!-- <a href="tel:+79999999999" class="contact-link">
+                <a href="tel:+79999999999" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
                 <a href="mailto:a.kirillov@bis.ru" class="contact-link">
                   <v-icon>mdi-email</v-icon>
-                </a> -->
+                </a>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
