@@ -16,7 +16,6 @@ export default defineNuxtConfig({
         { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
       ],
-      // charset: "utf-8",
       meta: [
         { name: "geo.region", content: "RU-LEN" },
         { name: "geo.placename", content: "Санкт-Петербург и Ленинградская область" },
