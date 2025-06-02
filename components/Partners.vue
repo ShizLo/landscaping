@@ -73,7 +73,7 @@ onMounted(() => {
         <div class="partner-card">
           <a href="https://novodacha.com/" target="_blank" rel="noopener noreferrer" class="partner-link">
             <div class="partner-image-container">
-              <img src="/media/images/content/partners/partners-scouthouse.webp" alt="NovoDacha" class="partner-image" loading="lazy" />
+              <img src="/media/images/content/partners/partners-novodacha.webp" alt="NovoDacha" class="partner-image" loading="lazy" />
               <div class="image-overlay"></div>
             </div>
             <div class="partner-info">

@@ -314,7 +314,7 @@ import img_service_8 from "./assets/images/drainagePage/services-1.webp";
 import img_service_9 from "./assets/images/drainagePage/services-4.webp";
 import img_service_10 from "./assets/images/waterPage/services-5.webp";
 import img_service_11 from "./assets/images/homePage/services-11.png";
-import img_service_12 from "./assets/images/homePage/services-12+.webp";
+import img_service_12 from "./assets/images/homePage/services-12.webp";
 
 //</Импорт картинок>===============================================================================
 
