@@ -270,6 +270,10 @@ export const swiper_bis_work = {
   modules: [Navigation],
 };
 export const swiper_popup_work = {
+  zoom: {
+    maxRatio: 2, // Максимальный уровень масштабирования
+    minRatio: 1, // Минимальный уровень масштабирования
+  },
   slidesPerView: 1,
   slidesPerGroup: 1,
   loop: true,

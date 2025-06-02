@@ -38,7 +38,7 @@ function closePopup() {
 }
 
 function toggleBodyScroll(lock) {
-  document.body.style.overflow = lock ? "hidden" : "";
+  document.documentElement.style.overflow = lock ? "hidden" : "";
 }
 
 onMounted(() => {
@@ -63,7 +63,7 @@ onMounted(() => {
     },
     breakpoints: {
       320: {
-        slidesPerView: 1,
+        slidesPerView: 1.01,
         spaceBetween: 16,
         coverflowEffect: {
           stretch: 0,
@@ -242,7 +242,7 @@ onUnmounted(() => {
 }
 
 .portfolio-slide {
-  width: 420px;
+  width: 500px;
   height: auto;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
@@ -268,7 +268,7 @@ onUnmounted(() => {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 
     .image-overlay {
-      opacity: 0.7;
+      opacity: 0.5;
     }
 
     .view-button {
@@ -311,7 +311,7 @@ onUnmounted(() => {
   right: 20px;
   max-width: 80%;
   background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
   border-radius: 8px;
   padding: 12px 20px;
   z-index: 2;
@@ -323,7 +323,7 @@ onUnmounted(() => {
   color: white;
   margin: 0;
   line-height: 1.3;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.6px;
   text-align: right;
   font-family: "Montserrat", sans-serif;
 }
@@ -415,7 +415,7 @@ onUnmounted(() => {
   }
 
   .portfolio-slide {
-    width: 340px;
+    width: 380px;
   }
 
   .section-subtitle {
@@ -424,6 +424,15 @@ onUnmounted(() => {
 
   .portfolio-navigation {
     display: none;
+  }
+  .portfolio-card {
+    &:hover {
+      transform: none;
+      .view-button {
+        opacity: 0;
+        transform: none;
+      }
+    }
   }
 }
 
@@ -456,7 +465,7 @@ onUnmounted(() => {
   }
 
   .portfolio-slide {
-    width: 280px;
+    width: 310px;
   }
 
   .portfolio-name-wrapper {

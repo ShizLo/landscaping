@@ -22,25 +22,63 @@ function swiperInit() {
 
 const props = defineProps({
   data: {
-    typeof: Array,
+    type: Array,
   },
 });
 
 const emit = defineEmits(["someEvent"]);
 
+// function listenerTouch() {
+//   let startY = 0;
+//   let endY = 0;
+//   const swiperContainer = document.querySelector(".swiper-popup-work");
+
+//   swiperContainer.addEventListener("touchstart", (e) => {
+//     startY = e.touches[0].clientY;
+//   });
+
+//   swiperContainer.addEventListener("touchend", (e) => {
+//     endY = e.changedTouches[0].clientY;
+//     const deltaY = endY - startY;
+//     if (deltaY > 100) {
+//       // Скролл вниз
+//       emit("someEvent");
+//     } else if (deltaY < -100) {
+//       // Скролл вверх
+//       emit("someEvent"); // Закрытие окна при скролле вверх
+//     }
+//   });
+// }
 function listenerTouch() {
   let startY = 0;
   let endY = 0;
+  let isZooming = false;
   const swiperContainer = document.querySelector(".swiper-popup-work");
 
+  // Слушаем событие zoomChange для определения, когда происходит масштабирование
+  swiper_popup.on("zoomChange", () => {
+    isZooming = swiper_popup.zoom.scale > 1;
+  });
+
   swiperContainer.addEventListener("touchstart", (e) => {
+    // Если уже масштабируем, не начинаем отслеживание свайпа
+    if (isZooming) return;
     startY = e.touches[0].clientY;
   });
 
   swiperContainer.addEventListener("touchend", (e) => {
+    // Если масштабируем, игнорируем событие
+    if (isZooming) return;
+
     endY = e.changedTouches[0].clientY;
     const deltaY = endY - startY;
-    if (deltaY > 100) {
+
+    // Увеличиваем порог срабатывания, чтобы уменьшить случайные закрытия
+    const threshold = 150;
+
+    if (deltaY > threshold) {
+      emit("someEvent");
+    } else if (deltaY < -threshold) {
       emit("someEvent");
     }
   });
@@ -61,7 +99,7 @@ onUnmounted(() => {
         <span class="ui-viewer-title-text">{{ data[0].alt }} {{ popup.index }} из {{ data.length }}</span>
       </div>
       <div class="viewer-action">
-        <div @click="$emit('someEvent')" class="ui-viewer-close">
+        <div @click="emit('someEvent')" class="ui-viewer-close">
           <div class="ui-viewer-close-icon"></div>
         </div>
       </div>
@@ -70,7 +108,9 @@ onUnmounted(() => {
       <div class="swiper-popup-work">
         <div class="swiper-wrapper">
           <div v-for="(item, k) in data" class="swiper-slide">
-            <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
+            <div class="swiper-zoom-container">
+              <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
+            </div>
           </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -83,7 +123,18 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+.swiper-zoom-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.swiper-slide {
+  position: relative;
+  overflow: hidden; /* Добавляем overflow: hidden для корректного отображения zoom */
+}
 .popup-slider {
   &__wraper {
     position: fixed;
