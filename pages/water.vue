@@ -154,11 +154,11 @@ function initializeDopServicesStructure() {
 }
 
 //<Импорт картинок блок наши услуги>================================================================================
-import img_service_1 from "../assets/images/waterPage/services-1.webp";
-import img_service_2 from "../assets/images/waterPage/services-2.webp";
+import img_service_1 from "../assets/images/services/water/service-caisson.webp";
+import img_service_2 from "../assets/images/services/water/service-borehole-drill.webp";
 import img_service_3 from "../assets/images/waterPage/services-3.webp";
 import img_service_4 from "../assets/images/waterPage/services-4.webp";
-import img_service_5 from "../assets/images/waterPage/services-5.webp";
+import img_service_5 from "../assets/images/services/water/service-well-pump.webp";
 import img_service_6 from "../assets/images/waterPage/services-6.webp";
 //</Импорт картинок>===============================================================================
 

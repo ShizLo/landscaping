@@ -243,11 +243,11 @@ import img_service_9 from "../assets/images/servicePage/slider/4.png";
 //</Импорт картинок>===============================================================================
 
 //<Импорт картинок блок "Наши работы">================================================================================
-import img_work_1 from "../assets/images/workPhotoService/septik/2.jpg";
-import img_work_2 from "../assets/images/workPhotoService/septik/1.jpg";
-import img_work_3 from "../assets/images/workPhotoService/septik/3.jpg";
-import img_work_4 from "../assets/images/workPhotoService/septik/4.jpg";
-import img_work_5 from "../assets/images/workPhotoService/septik/5.jpg";
+// import img_work_1 from "../assets/images/workPhotoService/septik/2.jpg";
+// import img_work_2 from "../assets/images/workPhotoService/septik/1.jpg";
+// import img_work_3 from "../assets/images/workPhotoService/septik/3.jpg";
+// import img_work_4 from "../assets/images/workPhotoService/septik/4.jpg";
+// import img_work_5 from "../assets/images/workPhotoService/septik/5.jpg";
 
 const dopServices = [
   [
@@ -343,51 +343,51 @@ const dataOrder = [
 ];
 const dataWork = [
   {
-    url: img_work_1,
+    url: "/media/images/content/services/service-septik-01.jpg",
     title: "",
     work: [
       {
-        url: img_work_1,
+        url: "/media/images/content/services/service-septik-01.jpg",
         alt: "Обслуживание септика",
       },
     ],
   },
   {
-    url: img_work_2,
+    url: "/media/images/content/services/service-septik-02.jpg",
     title: "",
     work: [
       {
-        url: img_work_2,
+        url: "/media/images/content/services/service-septik-02.jpg",
         alt: "Обслуживание септика",
       },
     ],
   },
   {
-    url: img_work_3,
+    url: "/media/images/content/services/service-septik-03.jpg",
     title: "",
     work: [
       {
-        url: img_work_3,
+        url: "/media/images/content/services/service-septik-03.jpg",
         alt: "Обслуживание септика",
       },
     ],
   },
   {
-    url: img_work_4,
+    url: "/media/images/content/services/service-septik-04.jpg",
     title: "",
     work: [
       {
-        url: img_work_4,
+        url: "/media/images/content/services/service-septik-04.jpg",
         alt: "Обслуживание септика",
       },
     ],
   },
   {
-    url: img_work_5,
+    url: "/media/images/content/services/service-septik-05.jpg",
     title: "",
     work: [
       {
-        url: img_work_5,
+        url: "/media/images/content/services/service-septik-05.jpg",
         alt: "Обслуживание септика",
       },
     ],

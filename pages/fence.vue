@@ -26,7 +26,7 @@ onMounted(async () => {
 });
 
 //<Импорт картинок блок наши услуги>================================================================================
-import img_service_1 from "../assets/images/fencePage/services-2.webp";
+import img_service_1 from "../assets/images/services/fence/service-metal-picket-fence.webp";
 import img_service_2 from "../assets/images/fencePage/services-1.png";
 import img_service_3 from "../assets/images/fencePage/services-3.webp";
 import img_service_4 from "../assets/images/fencePage/services-4.webp";
@@ -247,19 +247,19 @@ const feedbackForm = reactive({
 </script>
 <template>
   <div>
-  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
-  <banner
-    bannerText="Заборы и ограждения"
-    bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории. Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
-    :bannerPrice="state.bannerPrice"
-    @isVisible="visibleForm()"
-  />
-  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги по заборам" />
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.servicePrice" />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
-</div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
+    <banner
+      bannerText="Заборы и ограждения"
+      bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории. Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
+      :bannerPrice="state.bannerPrice"
+      @isVisible="visibleForm()"
+    />
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги по заборам" />
+    <WorkOrder :data="dataOrder" title="Как мы работаем" />
+    <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.servicePrice" />
+    <PopularServices title="Популярные услуги" />
+    <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

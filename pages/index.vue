@@ -25,6 +25,7 @@ const state = reactive({
   bannerPrice: initializeBannerStructure(),
   dataServices: initializeServicesStructure(),
   dopServices: initializeDopServicesStructure(),
+  dataWork: initializeDataWorkStructure(),
 });
 function initializeBannerStructure() {
   return [
@@ -250,7 +251,187 @@ function initializeDopServicesStructure() {
     ],
   ];
 }
+function initializeDataWorkStructure() {
+  return [
+    {
+      url: "/media/images/content/landscaping/photo-landscaping-01.jpg",
+      title: "Озеленение",
+      work: [
+        {
+          url: img_work_1,
+          alt: "Озеленение",
+        },
+        {
+          url: greenPark_1,
+          alt: "Озеленение",
+        },
+        {
+          url: greenPark_2,
+          alt: "Озеленение",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/gates/gate-sliding-01.jpeg",
+      title: "Откатные ворота",
+      work: [
+        {
+          url: gate_1,
+          alt: "Откатные ворота",
+        },
+        {
+          url: img_work_7,
+          alt: "Откатные ворота",
+        },
+        {
+          url: gate_2,
+          alt: "Откатные ворота",
+        },
+        {
+          url: gate_3,
+          alt: "Откатные ворота",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/arrival/arrival-rough-run-01.jpg",
+      title: "Черновой заезд на участок",
+      work: [
+        {
+          url: img_work_2,
+          alt: "Заезд на участок",
+        },
+      ],
+    },
 
+    {
+      url: "/media/images/content/fence/fence-metal-picket-01.jpeg",
+      title: "Забор из штакетника",
+      work: [
+        {
+          url: img_work_5,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_1,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_2,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_3,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_4,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_5,
+          alt: "Забор из штакетника",
+        },
+        {
+          url: fence_6,
+          alt: "Забор из штакетника",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/electricity/electricity-street-lighting-01.jpg",
+      title: "Уличное освещение",
+      work: [
+        {
+          url: img_work_4,
+          alt: "Уличное освещение",
+        },
+        {
+          url: electricity_1,
+          alt: "Уличное освещение",
+        },
+      ],
+    },
+
+    // {
+    //   url: img_work_3,
+    //   title: "Дорожки, посадка и выравнивание",
+    // },
+    {
+      url: "/media/images/content/foundation/foundation-installation-01.webp",
+      title: "Монтаж фундамента",
+      work: [
+        {
+          url: foundation_1,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_2,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_3,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_4,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_5,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_6,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_7,
+          alt: "Свайное поле",
+        },
+        {
+          url: foundation_8,
+          alt: "Свайное поле",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/fence/fence-gitter-mesh-01.jpg",
+      title: "Забор из гиттера",
+      work: [
+        {
+          url: img_work_6,
+          alt: "Забор из гиттера",
+        },
+        {
+          url: gitter_1,
+          alt: "Забор из гиттера",
+        },
+      ],
+    },
+
+    {
+      url: "/media/images/content/topography/topography-removal-boundaries-01.jpeg",
+      title: "Вынос границ участка",
+      work: [
+        {
+          url: borders_1,
+          alt: "Вынос границ",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/preparation/preparation-clearning-01.jpg",
+      title: "Расчистка участка",
+      work: [
+        {
+          url: img_work_8,
+          alt: "Расчистка участка",
+        },
+      ],
+    },
+  ];
+}
 onMounted(async () => {
   await catalogStore.loadCatalog();
   updatePrices();
@@ -303,18 +484,18 @@ function updatePrices() {
 }
 
 //<Импорт картинок блок "Наши услуги">================================================================================
-import img_service_1 from "./assets/images/homePage/services-1.webp";
-import img_service_2 from "./assets/images/homePage/services-2.webp";
-import img_service_3 from "./assets/images/homePage/services-3.webp";
-import img_service_4 from "./assets/images/homePage/services-4.webp";
-import img_service_5 from "./assets/images/homePage/services-5.webp";
-import img_service_6 from "./assets/images/homePage/services-6.png";
-import img_service_7 from "./assets/images/waterPage/services-2.webp";
-import img_service_8 from "./assets/images/drainagePage/services-1.webp";
-import img_service_9 from "./assets/images/drainagePage/services-4.webp";
-import img_service_10 from "./assets/images/waterPage/services-5.webp";
-import img_service_11 from "./assets/images/homePage/services-11.png";
-import img_service_12 from "./assets/images/homePage/services-12.webp";
+import img_service_1 from "./assets/images/services/home/service-septik.webp";
+import img_service_2 from "./assets/images/services/water/service-caisson.webp";
+import img_service_3 from "./assets/images/services/fence/service-metal-picket-fence.webp";
+import img_service_4 from "./assets/images/services/foundation/service-metal-piles.webp";
+import img_service_5 from "./assets/images/services/electricity/service-street-lamp.webp";
+import img_service_6 from "./assets/images/services/topography/service-site-project.png";
+import img_service_7 from "./assets/images/services/water/service-borehole-drill.webp";
+import img_service_8 from "./assets/images/services/drainage/service-storm-drain.webp";
+import img_service_9 from "./assets/images/services/drainage/service-drainage-pipe.webp";
+import img_service_10 from "./assets/images/services/water/service-well-pump.webp";
+import img_service_11 from "./assets/images/services/home/service-department.png";
+import img_service_12 from "./assets/images/services/home/service-improvement.webp";
 
 //</Импорт картинок>===============================================================================
 
@@ -401,7 +582,7 @@ const dataOrder = [
 ];
 const dataWork = [
   {
-    url: img_work_1,
+    url: "img_work_1",
     title: "Озеленение",
     work: [
       {
@@ -685,7 +866,7 @@ const feedbackForm = reactive({
     />
     <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
     <BisService title="БИС Сервис" :data="dataBisService" />
-    <WorksSlider :data="dataWork" />
+    <WorksSlider :data="state.dataWork" />
     <WorkOrder :data="dataOrder" title="За что нас ценят" />
     <Partners />
     <AboutUs />

@@ -162,7 +162,8 @@ onMounted(() => {
                   v-on:mouseleave="leaveHover"
                   :class="item.class"
                 >
-                  <a
+                  <nuxt-link
+                    :to="{ name: item.routePath }"
                     :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
                     class="services__item-link item"
                     @click="goTo(item.routePath)"
@@ -190,7 +191,7 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </nuxt-link>
                 </div>
               </div>
             </div>

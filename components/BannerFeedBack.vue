@@ -536,7 +536,7 @@ textarea {
   text-align: left;
   padding: 80px 20px 80px 50px;
   background-color: $background2;
-  background-image: url("../assets/images/homePage/services-1.webp");
+  background-image: url("../assets/images/services/home/service-septik.webp");
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: 85% auto;

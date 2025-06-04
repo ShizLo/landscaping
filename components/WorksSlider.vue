@@ -108,8 +108,8 @@ onUnmounted(() => {
             <div v-for="(item, index) in data" :key="index" class="swiper-slide portfolio-slide" @click="clickSlide(index)">
               <div class="portfolio-card">
                 <div class="card-image">
-                  <img :src="item.url" :alt="item.title" class="portfolio-image" loading="lazy" />
-                  <!-- <NuxtImg :src="item.url" :alt="item.title" class="portfolio-image" /> -->
+                  <!-- <img :src="item.url" :alt="item.title" class="portfolio-image" loading="lazy" /> -->
+                  <NuxtImg :src="item.url" :alt="item.title" class="portfolio-image" loading="lazy" />
                   <div class="image-overlay"></div>
 
                   <div class="portfolio-name-wrapper">

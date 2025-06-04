@@ -172,9 +172,9 @@ function initializeDopServicesStructure() {
 
 //<Импорт картинок блок наши услуги>================================================================================
 // import img_service_1 from "";
-import img_service_2 from "../assets/images/drainagePage/services-1.webp";
+import img_service_2 from "../assets/images/services/drainage/service-drainage-pipe.webp";
 import img_service_3 from "../assets/images/drainagePage/services-3.webp";
-import img_service_4 from "../assets/images/drainagePage/services-4.webp";
+import img_service_4 from "../assets/images/services/drainage/service-storm-drain.webp";
 import img_service_5 from "../assets/images/drainagePage/services-5.webp";
 // import img_service_6 from "";
 //</Импорт картинок>===============================================================================
