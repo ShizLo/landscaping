@@ -91,6 +91,7 @@ export default defineNuxtConfig({
       localeMessages: ["ru"], // Загружаем русский язык из пакета Vuetify
     },
   },
+
   sitemap: {
     exclude: ["/departure", "/develop", "/landscape", "/questionnaire", "/vacancies-junior", "/vacancies-middle", "/icons/**"],
     //TODO: Исключить изображения из sitemap
@@ -129,7 +130,19 @@ export default defineNuxtConfig({
       },
     ],
   },
+  // image: {
+  //   provider: process.env.NITRO_PRESET === "static" ? "static" : "ipx",
+  // },
   image: {
-    provider: process.env.NITRO_PRESET === "static" ? "static" : "ipx",
+    // domains: ["ваш-домен"], // если используете внешние изображения
+    provider: "ipx", // или 'cloudinary', 'imgix' и т.д.
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+    },
   },
 });

@@ -109,7 +109,8 @@ onUnmounted(() => {
         <div class="swiper-wrapper">
           <div v-for="(item, k) in data" class="swiper-slide">
             <div class="swiper-zoom-container">
-              <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
+              <!-- <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" /> -->
+              <NuxtImg loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
             </div>
           </div>
         </div>

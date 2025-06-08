@@ -92,6 +92,30 @@ onBeforeUnmount(() => {
         <div class="footer__column">
           <h3 class="footer__title">БИС: Благоустройство и инженерные сети</h3>
           <p class="footer__description">Профессиональные решения для загородных домов и участков в Санкт-Петербурге и ЛО</p>
+          <!-- <div class="menu__items">
+            <h3 class="menu__header">Медиа</h3>
+            <a href="https://vkvideo.ru/@bislandscaping" class="menu__item contact-link">
+              <icon name="mdi-vk" size="36" class="contact-icon" />
+              <span>VK видео</span>
+            </a>
+            <a href="https://t.me/BISlandscaping" class="menu__item contact-link">
+              <icon name="mdi-telegram" size="36" class="contact-icon" />
+              <span>Телеграм-канал</span>
+            </a>
+          </div> -->
+          <div class="media-block">
+            <h3 class="media-header">Медиа</h3>
+            <div class="media-items">
+              <a href="https://vkvideo.ru/@bislandscaping" class="media-item contact-link">
+                <icon name="mdi-vk" size="36" class="contact-icon" />
+                <span>VK видео</span>
+              </a>
+              <a href="https://t.me/BISlandscaping" class="media-item contact-link">
+                <icon name="mdi-telegram" size="36" class="contact-icon" />
+                <span>Телеграм-канал</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Услуги -->
@@ -144,16 +168,19 @@ onBeforeUnmount(() => {
               </svg>
             </h3>
             <div class="menu__items" :class="{ visible: !isMobile || menuStates.contacts }">
-              <a href="#" class="menu__item contact-link">
-                <img src="../assets/media/icons/common/social/telegram.svg" alt="Telegram" class="contact-icon" />
+              <a href="https://t.me/@lllaleksll" class="menu__item contact-link">
+                <!-- <img src="../assets/media/icons/common/social/telegram.svg" alt="Telegram" class="contact-icon" /> -->
+                <icon name="mdi-telegram" size="36" alt="Telegram" class="contact-icon" />
                 <span>Telegram</span>
               </a>
-              <a href="#" class="menu__item contact-link">
-                <img src="../assets/icons/footer-whatsapp.svg" alt="WhatsApp" class="contact-icon" />
+              <a href="https://wa.me/79112775607" class="menu__item contact-link">
+                <!-- <img src="../assets/icons/footer-whatsapp.svg" alt="WhatsApp" class="contact-icon" /> -->
+                <icon name="mdi-whatsapp" size="36" alt="WhatsApp" class="contact-icon" />
                 <span>WhatsApp</span>
               </a>
               <a href="mailto:info@bis-spb.ru" class="menu__item contact-link">
-                <img src="../assets/icons/footer-email.svg" alt="Email" class="contact-icon" />
+                <!-- <img src="../assets/icons/footer-email.svg" alt="Email" class="contact-icon" /> -->
+                <icon name="mdi-at" size="36" alt="Email" class="contact-icon" />
                 <span>info@bis-spb.ru</span>
               </a>
             </div>
@@ -382,7 +409,6 @@ onBeforeUnmount(() => {
       gap: 12px;
       overflow: hidden;
       transition: all 0.3s ease;
-
       @media (max-width: 991px) {
         max-height: 0;
         opacity: 0;
@@ -484,6 +510,47 @@ onBeforeUnmount(() => {
     &:hover {
       color: #fff;
       text-decoration: underline;
+    }
+  }
+}
+
+.media-block {
+  margin-top: 20px;
+
+  .media-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .media-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .media-item {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+    padding: 5px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &:hover {
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }

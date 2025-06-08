@@ -177,7 +177,7 @@ onMounted(() => {
               </div>
               <div class="member-contacts">
                 <a href="https://t.me/@Nikonenko_Sofya" class="contact-link">
-                  <icon name="bis:telegram" style="color: red"></icon>
+                  <icon name="mdi-telegram" size="24"></icon>
                 </a>
               </div>
             </div>
