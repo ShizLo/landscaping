@@ -31,13 +31,10 @@ onMounted(() => {
                 <span class="slogan-text">к каждому квадратному метру</span>
               </div>
             </div>
-
             <div class="about-us__image about-us__animated">
               <NuxtImg src="/images/fence/1.jpg" alt="Команда БИС за работой" loading="lazy" />
             </div>
           </div>
-
-          <!-- Правая колонка -->
           <div class="about-us__right">
             <div class="about-us__description about-us__animated">
               <div class="decoration-line"></div>
@@ -126,6 +123,7 @@ onMounted(() => {
     transform: translateZ(0);
 
     img {
+      display: block;
       width: 100%;
       height: auto;
       object-fit: cover;

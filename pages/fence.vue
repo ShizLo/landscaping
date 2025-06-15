@@ -244,6 +244,40 @@ function visibleForm() {
 const feedbackForm = reactive({
   active: false, // Открыта ли форма обратной связи
 });
+
+const galleryItems = [
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 1",
+    description: "Описание работы 1",
+  },
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 2",
+    description: "Описание работы 2",
+  },
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 1",
+    description: "Описание работы 1",
+  },
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 2",
+    description: "Описание работы 2",
+  },
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 1",
+    description: "Описание работы 1",
+  },
+  {
+    image: "/media/images/content/fence/fence-wooden-picket-01.jpeg",
+    title: "Работа 2",
+    description: "Описание работы 2",
+  },
+  // Добавьте больше работ по необходимости
+];
 </script>
 <template>
   <div>
@@ -257,6 +291,7 @@ const feedbackForm = reactive({
     <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги по заборам" />
     <WorkOrder :data="dataOrder" title="Как мы работаем" />
     <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.servicePrice" />
+    <!-- <WorkGallery :items="galleryItems" /> -->
     <PopularServices title="Популярные услуги" />
     <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
   </div>

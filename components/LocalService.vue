@@ -17,7 +17,12 @@ onUnmounted(() => {});
 <template>
   <section class="services">
     <div class="services__container _container">
-      <h2 class="services__title title-service">{{ serviceTitle }}</h2>
+      <div class="section-header" v-if="serviceTitle">
+        <h2 class="section-title">
+          <span class="title-text">{{ serviceTitle }}</span>
+          <span class="title-decoration"></span>
+        </h2>
+      </div>
       <ul class="services__items">
         <li v-for="item in servicePrice" class="services__item item">
           <a :style="{ 'background-image': 'url(' + item.urlImg + ')' }" class="services__link">
@@ -34,8 +39,72 @@ onUnmounted(() => {});
 
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+@use "sass:color";
 .services {
   margin: 0px 0px 25px 0px;
+  .section-header {
+    margin-bottom: 60px;
+    text-align: center;
+    @media (max-width: $md4) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+    position: relative;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+
+    .title-text {
+      background: linear-gradient(90deg, #2c3e50, #1a1a1a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      z-index: 2;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .title-decoration {
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 5px;
+      // background: linear-gradient(90deg, black, darken(black, 15%));
+      background: linear-gradient(90deg, black, color.adjust(black, $lightness: -15%));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    &:hover .title-decoration {
+      width: 120px;
+    }
+
+    @media (max-width: $md3) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: $md4) {
+      font-size: 2rem;
+      margin-bottom: 10px;
+
+      .title-decoration {
+        width: 60px;
+        height: 3px;
+        bottom: -8px;
+      }
+
+      &:hover .title-decoration {
+        width: 80px;
+      }
+    }
+  }
   &__title {
     margin-bottom: 10px;
     font-size: 26px;

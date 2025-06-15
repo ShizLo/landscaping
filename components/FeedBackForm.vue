@@ -16,6 +16,10 @@ const form = ref(null);
 const showSuccessSnackbar = ref(false);
 const snackbarTimeout = ref(3000);
 
+const isValid = computed(() => {
+  return name.value && email.value; // или более сложная проверка
+});
+
 const nameRules = computed(() => [(v) => !!v || "Имя обязательно для заполнения"]);
 
 const contactRules = computed(() => [(v) => !!v || "Контактные данные обязательны"]);
@@ -91,6 +95,7 @@ async function submit() {
               <v-btn
                 type="submit"
                 color="primary"
+                :disabled="!isValid"
                 :size="mobile ? 'large' : 'x-large'"
                 class="submit-btn"
                 :append-icon="mobile ? '' : 'mdi-arrow-right'"

@@ -1,7 +1,7 @@
 <script setup>
-import { defineAsyncComponent, onMounted, reactive } from "vue";
 import { useCatalogStore } from "@/stores/modules/catalog.store";
 import { useHead } from "#app";
+
 useHead({
   title: "Обслуживание и ремонт инженерных систем | Септик под ключ, водоснабжение, электроснабжение",
   titleTemplate: "%s %separator %siteName",
@@ -63,6 +63,7 @@ const state = reactive({
   price: [],
   dataServices: initializeServicesStructure(),
   dopServices: initializeDopServicesStructure(),
+  dataWork: initializeDataWorkStructure(),
   loading: false,
 });
 
@@ -76,6 +77,7 @@ function initializeServicesStructure() {
           price: "...",
           pathImg: img_service_3,
           hoverColors: "rgb(170, 214, 199)",
+          routePath: "",
           content: [
             {
               text: "Откачка отработанного материала",
@@ -105,6 +107,7 @@ function initializeServicesStructure() {
           price: "",
           pathImg: "",
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -112,6 +115,7 @@ function initializeServicesStructure() {
           price: "",
           pathImg: img_service_5,
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
       ],
     ],
@@ -123,6 +127,7 @@ function initializeServicesStructure() {
           price: "",
           pathImg: "",
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -130,6 +135,7 @@ function initializeServicesStructure() {
           price: "",
           pathImg: "",
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
       ],
       [
@@ -139,6 +145,7 @@ function initializeServicesStructure() {
           price: "...",
           pathImg: img_service_4,
           hoverColors: "rgb(255, 229, 204)",
+          routePath: "",
           content: [
             {
               text: "Полная проверка работы септика",
@@ -169,6 +176,7 @@ function initializeDopServicesStructure() {
           price: "от 9 500 руб.",
           pathImg: img_service_6,
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -176,6 +184,7 @@ function initializeDopServicesStructure() {
           price: "от 7 500 руб.",
           pathImg: img_service_7,
           hoverColors: "rgb(255, 229, 204)",
+          routePath: "",
         },
       ],
       [
@@ -185,6 +194,7 @@ function initializeDopServicesStructure() {
           price: "от 7 500 руб.",
           pathImg: "",
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -192,6 +202,7 @@ function initializeDopServicesStructure() {
           price: "от 10 000 руб.",
           pathImg: "",
           hoverColors: "rgb(255, 229, 204)",
+          routePath: "",
         },
       ],
     ],
@@ -203,6 +214,7 @@ function initializeDopServicesStructure() {
           price: "от 6 500 руб.",
           pathImg: img_service_8,
           hoverColors: "rgb(255, 229, 204)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -210,6 +222,7 @@ function initializeDopServicesStructure() {
           price: "от 11 000 руб.",
           pathImg: img_service_9,
           hoverColors: "rgb(243, 253, 180)",
+          routePath: "",
         },
       ],
       [
@@ -219,6 +232,7 @@ function initializeDopServicesStructure() {
           price: "от 11 000 руб.",
           pathImg: "",
           hoverColors: "rgb(204, 209, 255)",
+          routePath: "",
         },
         {
           class: "services__row-item-sm",
@@ -226,6 +240,7 @@ function initializeDopServicesStructure() {
           price: "Поможем!",
           pathImg: "",
           hoverColors: "rgb(255, 229, 204)",
+          routePath: "",
         },
       ],
     ],
@@ -242,165 +257,158 @@ import img_service_8 from "../assets/images/homePage/work-bis-service-1.webp";
 import img_service_9 from "../assets/images/servicePage/slider/4.png";
 //</Импорт картинок>===============================================================================
 
-//<Импорт картинок блок "Наши работы">================================================================================
-// import img_work_1 from "../assets/images/workPhotoService/septik/2.jpg";
-// import img_work_2 from "../assets/images/workPhotoService/septik/1.jpg";
-// import img_work_3 from "../assets/images/workPhotoService/septik/3.jpg";
-// import img_work_4 from "../assets/images/workPhotoService/septik/4.jpg";
-// import img_work_5 from "../assets/images/workPhotoService/septik/5.jpg";
+// const dataOrder = [
+//   {
+//     urlImg: "/icons/homePage/spinner9.svg",
+//     title: "Обсуживание",
+//     text: "Регулярное обслуживание позволяет предотвратить аварии, продлить срок службы оборудования и обеспечить комфортное проживание в загородном доме. Рекомендуем проводить его не реже 1-2 раз в год.",
+//   },
+//   {
+//     urlImg: "/icons/homePage/checkmark.svg",
+//     title: "Консервация",
+//     text: "Подготовим системы к длительному простою для защиты оборудования и коммуникаций вызванных низкими температурами, коррозией или другими внешними факторами.",
+//   },
+//   {
+//     urlImg: "/icons/waterPage/hammer.svg",
+//     title: "Ремонт",
+//     text: "Восстановим работоспособность систем, которые вышли из строя или требующие модернизации.",
+//   },
+//   {
+//     urlImg: "/icons/homePage/cogs.svg",
+//     title: "Диагностика",
+//     text: "Оценим состояние всех систем и выявим потенциальные проблемы. Проводится как в профилактических целях, так и перед ремонтом, консервацией или после длительного простоя.",
+//   },
+// ];
 
-const dopServices = [
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Аварийная сигнализация",
-        price: "от 9 500 руб.",
-        pathImg: img_service_6,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Электромагнитный клапан",
-        price: "от 7 500 руб.",
-        pathImg: img_service_7,
-        hoverColors: "rgb(255, 229, 204)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Замена аэролифта",
-        price: "от 7 500 руб.",
-        pathImg: "",
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Ремонт крышки септика",
-        price: "от 10 000 руб.",
-        pathImg: "",
-        hoverColors: "rgb(255, 229, 204)",
-      },
-    ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Замена компрессора",
-        price: "от 6 500 руб.",
-        pathImg: img_service_8,
-        hoverColors: "rgb(255, 229, 204)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Замена аэратора",
-        price: "от 11 000 руб.",
-        pathImg: img_service_9,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Наращивание горловины",
-        price: "от 11 000 руб.",
-        pathImg: "",
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Нет вашей услуги?",
-        price: "Поможем!",
-        pathImg: "",
-        hoverColors: "rgb(255, 229, 204)",
-      },
-    ],
-  ],
-];
-const dataOrder = [
-  {
-    urlImg: "/icons/homePage/spinner9.svg",
-    title: "Обсуживание",
-    text: "Регулярное обслуживание позволяет предотвратить аварии, продлить срок службы оборудования и обеспечить комфортное проживание в загородном доме. Рекомендуем проводить его не реже 1-2 раз в год.",
-  },
-  {
-    urlImg: "/icons/homePage/checkmark.svg",
-    title: "Консервация",
-    text: "Подготовим системы к длительному простою для защиты оборудования и коммуникаций вызванных низкими температурами, коррозией или другими внешними факторами.",
-  },
-  {
-    urlImg: "/icons/waterPage/hammer.svg",
-    title: "Ремонт",
-    text: "Восстановим работоспособность систем, которые вышли из строя или требующие модернизации.",
-  },
-  {
-    urlImg: "/icons/homePage/cogs.svg",
-    title: "Диагностика",
-    text: "Оценим состояние всех систем и выявим потенциальные проблемы. Проводится как в профилактических целях, так и перед ремонтом, консервацией или после длительного простоя.",
-  },
-];
-const dataWork = [
-  {
-    url: "/media/images/content/services/service-septik-01.jpg",
-    title: "",
-    work: [
-      {
-        url: "/media/images/content/services/service-septik-01.jpg",
-        alt: "Обслуживание септика",
-      },
-    ],
-  },
-  {
-    url: "/media/images/content/services/service-septik-02.jpg",
-    title: "",
-    work: [
-      {
-        url: "/media/images/content/services/service-septik-02.jpg",
-        alt: "Обслуживание септика",
-      },
-    ],
-  },
-  {
-    url: "/media/images/content/services/service-septik-03.jpg",
-    title: "",
-    work: [
-      {
-        url: "/media/images/content/services/service-septik-03.jpg",
-        alt: "Обслуживание септика",
-      },
-    ],
-  },
-  {
-    url: "/media/images/content/services/service-septik-04.jpg",
-    title: "",
-    work: [
-      {
-        url: "/media/images/content/services/service-septik-04.jpg",
-        alt: "Обслуживание септика",
-      },
-    ],
-  },
-  {
-    url: "/media/images/content/services/service-septik-05.jpg",
-    title: "",
-    work: [
-      {
-        url: "/media/images/content/services/service-septik-05.jpg",
-        alt: "Обслуживание септика",
-      },
-    ],
-  },
-];
+function initializeDataWorkStructure() {
+  return [
+    {
+      url: "/media/images/content/services/service-septik-01.jpg",
+      title: "Септик",
+      work: [
+        {
+          url: "/media/images/content/services/service-septik-01.jpg",
+          alt: "Обслуживание септика",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/services/service-septik-02.jpg",
+      title: "Септик",
+      work: [
+        {
+          url: "/media/images/content/services/service-septik-02.jpg",
+          alt: "Обслуживание септика",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/services/service-septik-03.jpg",
+      title: "Септик",
+      work: [
+        {
+          url: "/media/images/content/services/service-septik-03.jpg",
+          alt: "Обслуживание септика",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/services/service-septik-04.jpg",
+      title: "Септик",
+      work: [
+        {
+          url: "/media/images/content/services/service-septik-04.jpg",
+          alt: "Обслуживание септика",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/services/service-septik-05.jpg",
+      title: "Септик",
+      work: [
+        {
+          url: "/media/images/content/services/service-septik-05.jpg",
+          alt: "Обслуживание септика",
+        },
+      ],
+    },
+  ];
+}
+// const dataWork = [
+//   {
+//     url: "/media/images/content/services/service-septik-01.jpg",
+//     title: "",
+//     work: [
+//       {
+//         url: "/media/images/content/services/service-septik-01.jpg",
+//         alt: "Обслуживание септика",
+//       },
+//     ],
+//   },
+//   {
+//     url: "/media/images/content/services/service-septik-02.jpg",
+//     title: "",
+//     work: [
+//       {
+//         url: "/media/images/content/services/service-septik-02.jpg",
+//         alt: "Обслуживание септика",
+//       },
+//     ],
+//   },
+//   {
+//     url: "/media/images/content/services/service-septik-03.jpg",
+//     title: "",
+//     work: [
+//       {
+//         url: "/media/images/content/services/service-septik-03.jpg",
+//         alt: "Обслуживание септика",
+//       },
+//     ],
+//   },
+//   {
+//     url: "/media/images/content/services/service-septik-04.jpg",
+//     title: "",
+//     work: [
+//       {
+//         url: "/media/images/content/services/service-septik-04.jpg",
+//         alt: "Обслуживание септика",
+//       },
+//     ],
+//   },
+//   {
+//     url: "/media/images/content/services/service-septik-05.jpg",
+//     title: "",
+//     work: [
+//       {
+//         url: "/media/images/content/services/service-septik-05.jpg",
+//         alt: "Обслуживание септика",
+//       },
+//     ],
+//   },
+// ];
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+    // toggleBodyScroll(true);
+  } else {
+    feedbackForm.active = false;
+    // toggleBodyScroll(false);
+  }
+}
+
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
+const feedBackData = ["Аварийный выезд", "Базовое обслуживание", "Консервация", "Проверка тех. состояния", "Нет в списке"];
 </script>
 
 <template>
   <div>
+    <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
     <BannerFeedBack />
-    <SeptikServices title="Наши услуги" :dataServices="state.dataServices" :dopServices="state.dopServices" />
+    <SeptikServices @isVisible="visibleForm()" title="Наши услуги" :dataServices="state.dataServices" :dopServices="state.dopServices" />
     <VariantServiceSlider title="Варианты обслуживания" />
-    <WorksSlider title="Наши работы" :data="dataWork" />
+    <WorksSlider :data="state.dataWork" />
     <PriceExpansion />
     <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
   </div>

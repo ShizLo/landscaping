@@ -20,6 +20,23 @@ useHead({
 
 const catalogStore = useCatalogStore();
 
+//<Импорт картинок блок наши услуги>================================================================================
+import img_service_1 from "../assets/images/services/water/service-caisson.webp";
+import img_service_2 from "../assets/images/services/water/service-borehole-drill.webp";
+import img_service_3 from "../assets/images/waterPage/services-3.webp";
+import img_service_4 from "../assets/images/waterPage/services-4.webp";
+import img_service_5 from "../assets/images/services/water/service-well-pump.webp";
+import img_service_6 from "../assets/images/waterPage/services-6.webp";
+//</Импорт картинок>===============================================================================
+//<Импорт картинок для дополнительных услуг>================================================================================
+import water_street_tap from "../assets/media/images/water/water-street-tap.png";
+import water_underground_crane from "../assets/media/images/water/water-underground-crane.png";
+import water_tapping_into from "../assets/media/images/water/water-tapping-into.webp";
+import water_analysis from "../assets/media/images/water/water-analysis.png";
+import water_supply_route from "../assets/media/images/water/water-supply-route.png";
+import water_insulation_well from "../assets/media/images/water/water-insulation-well.png";
+//</Импорт картинок для дополнительных услуг>===============================================================================
+
 onMounted(async () => {
   await catalogStore.loadCatalog();
   updatePrices();
@@ -45,6 +62,8 @@ function updatePrices() {
   state.bannerPrice[0].price = catalogStore.getPriceById(26);
   //Монтаж автоматики
   state.bannerPrice[1].price = catalogStore.getPriceById(27);
+  // Бурение скважин
+  state.bannerPrice[2].price = catalogStore.getPriceById(11);
   //</Банер>===============================================================================
   //<Дополнительные бурут>================================================================================
   //Врезка в водопровод
@@ -73,7 +92,7 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/waterPage/slider-1.jpg",
+      url: "/media/images/content/water/water-cusson-02.jpg",
       price: "",
       name: "Кессон",
     },
@@ -81,6 +100,11 @@ function initializeBannerStructure() {
       url: "/images/waterPage/slider-2.jpg",
       price: "",
       name: "Монтаж автоматики",
+    },
+    {
+      url: "/media/images/content/water/water-drilling-well-01.jpg",
+      price: "",
+      name: "Бурение скважин",
     },
   ];
 }
@@ -144,23 +168,14 @@ function initializeServicesStructure() {
 }
 function initializeDopServicesStructure() {
   return [
-    { urlImg: "", price: "", name: "Врезка в водопровод" },
-    { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
-    { urlImg: "", price: "", name: "Уличный кран" },
-    { urlImg: "", price: "", name: "Утепление колодца" },
-    { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
-    { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
+    { urlImg: water_tapping_into, price: "", name: "Врезка в водопровод" },
+    { urlImg: water_analysis, price: "", name: "Анализ воды и подбор оборудования для очистки" },
+    { urlImg: water_street_tap, price: "", name: "Уличный кран" },
+    { urlImg: water_insulation_well, price: "", name: "Утепление колодца" },
+    { urlImg: water_underground_crane, price: "", name: "Установка ковера (подземный кран)" },
+    { urlImg: water_supply_route, price: "", name: "Прокладка дополнительных трас водоснабжения" },
   ];
 }
-
-//<Импорт картинок блок наши услуги>================================================================================
-import img_service_1 from "../assets/images/services/water/service-caisson.webp";
-import img_service_2 from "../assets/images/services/water/service-borehole-drill.webp";
-import img_service_3 from "../assets/images/waterPage/services-3.webp";
-import img_service_4 from "../assets/images/waterPage/services-4.webp";
-import img_service_5 from "../assets/images/services/water/service-well-pump.webp";
-import img_service_6 from "../assets/images/waterPage/services-6.webp";
-//</Импорт картинок>===============================================================================
 
 const dataOrder = [
   {

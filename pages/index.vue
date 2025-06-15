@@ -194,14 +194,14 @@ function initializeDopServicesStructure() {
           price: "",
           pathImg: img_service_7,
           hoverColors: "rgb(204, 209, 255)",
+          routePath: ROUTES_PATHS.WATER,
         },
         {
           class: "services__row-item-sm",
-          title: "Ливневка",
+          title: "Садовая мебель",
           price: "",
-          pathImg: img_service_8,
+          pathImg: garden_table,
           hoverColors: "rgb(255, 229, 204)",
-          routePath: ROUTES_PATHS.DRAINAGE,
         },
       ],
     ],
@@ -295,7 +295,7 @@ function initializeDataWorkStructure() {
     },
     {
       url: "/media/images/content/arrival/arrival-rough-run-01.jpg",
-      title: "Черновой заезд на участок",
+      title: "Черновой заезд",
       work: [
         {
           url: "/media/images/content/arrival/arrival-rough-run-01.jpg",
@@ -472,8 +472,8 @@ function updatePrices() {
   state.dopServices[1][0][1].price = catalogStore.getPriceById(14);
   // Бурение скважин
   state.dopServices[0][1][0].price = catalogStore.getPriceById(11);
-  // Ливневка
-  state.dopServices[0][1][1].price = catalogStore.getPriceById(12);
+  // Садовая мебель
+  state.dopServices[0][1][1].price = catalogStore.getPriceById(107);
   // Бис сервис
   state.dopServices[1][1][0].price = catalogStore.getPriceById(15);
   //</Дополнительные услуги>===============================================================================
@@ -488,6 +488,7 @@ import img_service_5 from "./assets/images/services/electricity/service-street-l
 import img_service_6 from "./assets/images/services/topography/service-site-project.png";
 import img_service_7 from "./assets/images/services/water/service-borehole-drill.webp";
 import img_service_8 from "./assets/images/services/drainage/service-storm-drain.webp";
+import garden_table from "./assets/media/images/garden/garden-table.png";
 import img_service_9 from "./assets/images/services/drainage/service-drainage-pipe.webp";
 import img_service_10 from "./assets/images/services/water/service-well-pump.webp";
 import img_service_11 from "./assets/images/services/home/service-department.png";
@@ -643,6 +644,7 @@ const dataBisService = [
   },
 ];
 const feedBackData = [
+  "Садовая мебель",
   "Проект участка",
   "Свайный фундамент",
   "Септик под ключ",

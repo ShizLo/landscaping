@@ -193,6 +193,14 @@ onUnmounted(() => {
       opacity: 1;
       transform: translateY(0);
     }
+    @media (max-width: $md4) {
+      transform: none;
+      box-shadow: none;
+      .service-hover {
+        opacity: 0;
+        transform: none;
+      }
+    }
   }
 }
 

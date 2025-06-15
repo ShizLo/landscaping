@@ -47,10 +47,9 @@ function updatePrices() {
   //<Дополнительные услуги>================================================================================
   // Заезд на участок
   state.dopServices[0][0][0].price = catalogStore.getPriceById(70);
-  // Ливневка
-  state.dopServices[0][0][1].price = catalogStore.getPriceById(12);
   // Дождеприемники
-  state.dopServices[1][0][0].price = catalogStore.getPriceById(71);
+  state.dopServices[0][0][1].price = catalogStore.getPriceById(71);
+
   //</Дополнительные услуги>===============================================================================
 }
 
@@ -79,7 +78,7 @@ function initializeServicesStructure() {
           class: "services__row-item-big",
           title: "Cхема с уклонами и высотными отметками",
           price: "",
-          pathImg: "",
+          pathImg: drainage_scheme,
           hoverColors: "rgb(170, 214, 199)",
         },
       ],
@@ -122,13 +121,17 @@ function initializeServicesStructure() {
           class: "services__row-item-big",
           title: "Прочистка дренажа, ливневой канализации модернизация и реконструкция",
           price: "",
-          pathImg: "",
+          pathImg: drainage_cleaning,
           hoverColors: "rgb(255, 229, 204)",
         },
       ],
     ],
   ];
 }
+
+import drainage_rainwater_inlet from "../assets/media/images/drainage/drainage-rainwater-inlet.png";
+import improvement_track from "../assets/media/images/improvement/improvement-track.png";
+
 function initializeDopServicesStructure() {
   return [
     [
@@ -137,27 +140,20 @@ function initializeDopServicesStructure() {
           class: "services__row-item-sm",
           title: "Заезд на участок",
           price: "",
-          pathImg: "",
+          pathImg: improvement_track,
           hoverColors: "rgb(204, 209, 255)",
         },
         {
           class: "services__row-item-sm",
-          title: "Ливневка",
+          title: "Дождеприемники",
           price: "",
-          pathImg: "",
+          pathImg: drainage_rainwater_inlet,
           hoverColors: "rgb(255, 229, 204)",
         },
       ],
     ],
     [
       [
-        {
-          class: "services__row-item-sm",
-          title: "Дождеприемники",
-          price: "",
-          pathImg: "",
-          hoverColors: "rgb(255, 229, 204)",
-        },
         {
           class: "services__row-item-sm",
           title: "Оставить заявку",
@@ -172,10 +168,12 @@ function initializeDopServicesStructure() {
 
 //<Импорт картинок блок наши услуги>================================================================================
 // import img_service_1 from "";
-import img_service_2 from "../assets/images/services/drainage/service-drainage-pipe.webp";
+import img_service_4 from "../assets/images/services/drainage/service-drainage-pipe.webp";
 import img_service_3 from "../assets/images/drainagePage/services-3.webp";
-import img_service_4 from "../assets/images/services/drainage/service-storm-drain.webp";
+import img_service_2 from "../assets/images/services/drainage/service-storm-drain.webp";
 import img_service_5 from "../assets/images/drainagePage/services-5.webp";
+import drainage_cleaning from "../assets/media/images/drainage/drainage-cleaning.png";
+import drainage_scheme from "../assets/media/images/drainage/drainage-scheme.png";
 // import img_service_6 from "";
 //</Импорт картинок>===============================================================================
 

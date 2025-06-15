@@ -137,11 +137,16 @@ function initializeServicesStructure() {
     ],
   ];
 }
+
+import foundation_cruched_stone from "../assets/media/images/foundation/foundation-cruched-stone-01.png";
+import foundation_chainsaw from "../assets/media/images/foundation/foundation-chainsaw-01.png";
+import drainage_storm_drain from "../assets/media/images/drainage/drainage-storm-drain-01.png";
+
 function initializeDopServicesStructure() {
   return [
-    { urlImg: "", price: "", name: "Отсыпка свайного поля" },
-    { urlImg: "", price: "", name: "Планировка и расчистка участка" },
-    { urlImg: "", price: "", name: "Ливневка" },
+    { urlImg: foundation_cruched_stone, price: "", name: "Отсыпка свайного поля" },
+    { urlImg: foundation_chainsaw, price: "", name: "Планировка и расчистка участка" },
+    { urlImg: drainage_storm_drain, price: "", name: "Ливневка" },
   ];
 }
 //<Импорт картинок блок "Наши услуги">================================================================================

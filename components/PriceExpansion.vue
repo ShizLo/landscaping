@@ -185,7 +185,6 @@ const expandedPanels = ref([]);
   margin: 0 0 60px 0;
   position: relative;
   text-align: center;
-  // display: inline-block;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   width: 100%;

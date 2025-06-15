@@ -69,21 +69,28 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@pinia/nuxt",
     "vuetify-nuxt-module",
-    "nuxt-yandex-metrika",
+    ...(process.env.NODE_ENV === "production" ? ["nuxt-yandex-metrika"] : []),
     "@nuxtjs/robots",
     "@nuxt/icon",
     "@nuxtjs/seo",
     "@nuxtjs/sitemap", // Должен быть в конце?
   ],
+
   site: {
     url: "https://spb-bis.ru",
     name: "БИС",
   },
-  yandexMetrika: {
-    id: "101887232",
-  },
+  ...(process.env.NODE_ENV === "production"
+    ? {
+        yandexMetrika: {
+          id: "101887232",
+          // debug: process.env.NODE_ENV !== "production",
+        },
+      }
+    : {}),
   vuetify: {
     vuetifyOptions: {
+      directives: true,
       locale: {
         locale: "ru", // Устанавливаем язык по умолчанию
         fallback: "en", // Язык по умолчанию, если перевод отсутствует
@@ -133,9 +140,21 @@ export default defineNuxtConfig({
   // image: {
   //   provider: process.env.NITRO_PRESET === "static" ? "static" : "ipx",
   // },
+  // image: {
+  //   // domains: ["ваш-домен"], // если используете внешние изображения
+  //   provider: "ipx", // или 'cloudinary', 'imgix' и т.д.
+  //   screens: {
+  //     xs: 320,
+  //     sm: 640,
+  //     md: 768,
+  //     lg: 1024,
+  //     xl: 1280,
+  //     xxl: 1536,
+  //   },
+  // },
   image: {
-    // domains: ["ваш-домен"], // если используете внешние изображения
-    provider: "ipx", // или 'cloudinary', 'imgix' и т.д.
+    provider: process.env.NITRO_PRESET === "static" ? "static" : "ipx",
+    dir: "public", // указываем корневую директорию для изображений
     screens: {
       xs: 320,
       sm: 640,

@@ -11,20 +11,25 @@ const dateTime = ref(new Date().toISOString());
 const selectedDateTime = ref(null);
 const form = ref(null);
 const isSubmitted = ref(false);
-const isLoading = ref(false); // Состояние загрузки
+const isLoading = ref(false);
 
 onMounted(() => {
-  if (mobile.value) {
-    document.querySelectorAll("input, textarea").forEach((input) => {
-      input.addEventListener("focus", () => {
-        input.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-  }
+  // if (mobile.value) {
+  //   document.querySelectorAll("input, textarea").forEach((input) => {
+  //     input.addEventListener("focus", () => {
+  //       input.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     });
+  //   });
+  // }
 });
+
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
+
 // Форматирование даты и времени
 const formattedDateTime = computed(() => {
   const date = new Date(dateTime.value);
@@ -32,13 +37,9 @@ const formattedDateTime = computed(() => {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
   });
 });
 
-// Обновить выбранную дату и время
 const updateDateTime = (value) => {
   dateTime.value = value;
   selectedDateTime.value = formattedDateTime.value;
@@ -58,16 +59,8 @@ const message = reactive({
   communication: [],
 });
 
-const communication = reactive({
-  phone: false,
-  telegram: false,
-  whatsup: false,
-});
-
-const props = defineProps({
-  title: {
-    typeof: String,
-  },
+const isValid = computed(() => {
+  return message.fio && message.email.length == 18;
 });
 
 const moveCursorToFirstHash = () => {
@@ -89,21 +82,21 @@ async function sendMessage() {
     return;
   }
 
-  isLoading.value = true; // Включаем загрузку
+  isLoading.value = true;
 
   try {
     const formattedText = `
-  👨🏻 Заявка на сервис
-  ${
-    message.fio != "" ||
-    message.email != "" ||
-    message.address != "" ||
-    selectedDateTime.value ||
-    message.septik.length > 0 ||
-    message.communication.length > 0
-      ? `[line]`
-      : ""
-  }
+👨🏻 Заявка на сервис
+${
+  message.fio != "" ||
+  message.email != "" ||
+  message.address != "" ||
+  selectedDateTime.value ||
+  message.septik.length > 0 ||
+  message.communication.length > 0
+    ? `[line]`
+    : ""
+}
 ${message.fio != "" ? `ФИО: ${message.fio}` : ""}
 ${message.email != "" ? `Телефон: ${message.email}` : ""}
 ${message.address != "" ? `Адрес: ${message.address}` : ""}
@@ -135,16 +128,13 @@ ${selectedDateTime.value ? `Удобное время: ${selectedDateTime.value}
 
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        // chat_id: CHATS_ID.BASE,
-        // message_thread_id: TOPICS_ID.SERVICES,
-        chat_id: CHATS_ID.BASE_DEV,
-        message_thread_id: TOPICS_ID.DEV,
+        chat_id: CHATS_ID.BASE,
+        message_thread_id: TOPICS_ID.SEPTIKS,
         text: formattedText,
         parse_mode: "MarkdownV2",
         polling: true,
       })
       .then(() => {
-        // Задержка перед показом успешного сообщения
         setTimeout(() => {
           if (mobile.value) {
             scrollToTop();
@@ -158,8 +148,6 @@ ${selectedDateTime.value ? `Удобное время: ${selectedDateTime.value}
           message.communication = [];
           selectedDateTime.value = null;
         }, 1000);
-
-        // Очищаем форму
       });
   } catch (error) {
     console.error("Ошибка при отправке сообщения:", error);
@@ -174,106 +162,99 @@ ${selectedDateTime.value ? `Удобное время: ${selectedDateTime.value}
 </script>
 
 <template>
-  <section id="section" class="global-form feedback-form">
-    <div class="_container global-form_mt">
-      <div class="form-bl brd" :style="{ minHeight: '600px' }">
-        <!-- Фиксированная высота -->
-        <div class="form-submit">
+  <section id="service-form" class="service-form-section">
+    <div class="_container">
+      <v-card class="form-card" elevation="8">
+        <div class="form-content">
           <template v-if="!isSubmitted">
-            <div class="form__title">Обслуживание септика или ЛОС</div>
-            <p class="mb-4">Оставьте заявку на обслуживание</p>
-            <v-form @submit.prevent="sendMessage" ref="form">
-              <div class="flex-input mb-sm-2">
-                <div class="col">
+            <div class="form-header">
+              <v-icon color="#EA5B0C" size="48" class="header-icon">mdi-pipe-disconnected</v-icon>
+              <h2 class="form-title">Обслуживание септика или ЛОС</h2>
+              <p class="form-subtitle">Оставьте заявку на профессиональное обслуживание</p>
+            </div>
+
+            <v-form @submit.prevent="sendMessage" ref="form" class="service-form">
+              <v-row>
+                <v-col class="pb-0" cols="12" md="6">
                   <v-text-field
+                    v-model="message.fio"
+                    label="Ваше ФИО"
                     variant="outlined"
                     :rules="[(v) => !!v || 'Обязательное поле']"
                     required
-                    v-model="message.fio"
-                    name="Ваше ФИО"
-                    placeholder="Ваше ФИО"
+                    prepend-inner-icon="mdi-account"
+                    color="#EA5B0C"
                     density="comfortable"
-                  >
-                    <template v-slot:label> <span> Ваше ФИО </span> </template>
-                    <template v-slot:prepend-inner>
-                      <v-icon color="orange-darken-4"> mdi-account </v-icon>
-                    </template>
-                  </v-text-field>
-                </div>
-                <div class="col">
+                  ></v-text-field>
+                </v-col>
+
+                <v-col class="pb-0" cols="12" md="6">
                   <v-text-field
                     v-model="message.email"
+                    label="Номер телефона"
                     variant="outlined"
                     v-maska="'+7 (###) ###-##-##'"
                     placeholder="+7 (___) ___-__-__"
                     :rules="[(v) => !!v || 'Обязательное поле', (v) => (v && v.length === 18) || 'Введите корректный номер']"
                     required
+                    prepend-inner-icon="mdi-phone"
+                    color="#EA5B0C"
                     density="comfortable"
                     @focus="moveCursorToFirstHash"
                     @blur="onBlur"
-                  >
-                    <template v-slot:label> <span class="test"> Номер телефона </span> </template>
-                    <template v-slot:prepend-inner>
-                      <v-icon color="orange-darken-4"> mdi-phone </v-icon>
-                    </template>
-                  </v-text-field>
-                </div>
-                <div class="col">
+                  ></v-text-field>
+                </v-col>
+
+                <v-col class="pb-0" cols="12" md="6">
                   <v-select
                     v-model="message.septik"
                     :items="['Евробион', 'Астра', 'Нет в списке']"
                     label="Укажите Ваш септик"
                     variant="outlined"
                     multiple
+                    prepend-inner-icon="mdi-barrel"
+                    color="#EA5B0C"
                     density="comfortable"
-                  >
-                    <template v-slot:prepend-inner>
-                      <v-icon color="orange-darken-4"> mdi-barrel </v-icon>
-                    </template>
-                  </v-select>
-                </div>
-              </div>
-              <div class="flex-input mb-1">
-                <div class="col">
-                  <v-text-field variant="outlined" v-model="message.address" placeholder="Адрес дома или № объекта" density="comfortable">
-                    <template v-slot:label> <span> Адрес дома или № объекта </span> </template>
-                    <template v-slot:prepend-inner>
-                      <v-icon color="orange-darken-4"> mdi-map-marker-outline </v-icon>
-                    </template>
-                  </v-text-field>
-                </div>
-                <div class="col">
+                  ></v-select>
+                </v-col>
+
+                <v-col class="pb-0" cols="12" md="6">
+                  <v-text-field
+                    v-model="message.address"
+                    label="Адрес дома или № объекта"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-map-marker-outline"
+                    color="#EA5B0C"
+                    density="comfortable"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col class="pb-0" cols="12" md="6">
                   <v-select
                     v-model="message.communication"
                     :items="['Звонок', 'Telegram', 'WhatsApp']"
-                    label="Укажите удобный способ связи"
+                    label="Удобный способ связи"
                     variant="outlined"
-                    density="comfortable"
                     multiple
-                  >
-                    <template v-slot:prepend-inner>
-                      <v-icon color="orange-darken-4"> mdi-forum </v-icon>
-                    </template>
-                  </v-select>
-                </div>
-                <div class="col">
+                    prepend-inner-icon="mdi-forum"
+                    color="#EA5B0C"
+                    density="comfortable"
+                  ></v-select>
+                </v-col>
+
+                <v-col class="pb-0" cols="12" md="6">
                   <v-menu :close-on-content-click="false" location="bottom">
                     <template v-slot:activator="{ props }">
                       <v-text-field
-                        variant="outlined"
                         v-model="selectedDateTime"
                         label="Выберите дату выезда"
+                        variant="outlined"
                         readonly
-                        hide-details
-                        prepend-inner-icon=""
+                        prepend-inner-icon="mdi-clock-outline"
+                        color="#EA5B0C"
                         density="comfortable"
-                        color="text"
                         v-bind="props"
-                      >
-                        <template v-slot:prepend-inner>
-                          <v-icon color="orange-darken-4"> mdi-clock-outline </v-icon>
-                        </template>
-                      </v-text-field>
+                      ></v-text-field>
                     </template>
                     <v-date-picker
                       v-model="dateTime"
@@ -286,305 +267,182 @@ ${selectedDateTime.value ? `Удобное время: ${selectedDateTime.value}
                       class="elevated-picker"
                     ></v-date-picker>
                   </v-menu>
-                </div>
-              </div>
+                </v-col>
+              </v-row>
 
-              <div class="feedback mb-4">
-                <p class="feedback__text">
+              <div class="form-footer">
+                <p class="privacy-text">
                   Нажимая кнопку «Отправить», вы соглашаетесь с
-                  <nuxt-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</nuxt-link>
+                  <nuxt-link :to="{ name: ROUTES_PATHS.POLICY }" class="privacy-link">Политикой конфиденциальности</nuxt-link>
                 </p>
-              </div>
-              <div class="feedback-form__footer">
+
                 <v-btn
                   type="submit"
-                  color="primary"
+                  color="#EA5B0C"
                   :size="mobile ? 'large' : 'x-large'"
                   class="submit-btn"
-                  :append-icon="mobile ? '' : 'mdi-arrow-right'"
-                  :class="mobile ? 'mb-3' : 'mb-0'"
+                  :append-icon="mobile ? '' : 'mdi-send'"
                   :loading="isLoading"
-                  :disabled="isLoading"
+                  :disabled="isLoading || !isValid"
+                  block
                 >
                   <template v-slot:loader>
                     <v-progress-circular indeterminate color="white" size="24" width="3"></v-progress-circular>
                   </template>
-                  Отправить
+                  Отправить заявку
                 </v-btn>
               </div>
             </v-form>
           </template>
+
           <template v-else>
             <div class="success-message">
               <v-icon color="success" size="64">mdi-check-circle</v-icon>
-              <h2 class="form__title">Заявка успешно отправлена!</h2>
-              <p class="mb-4">Мы свяжемся с вами в ближайшее время</p>
-              <v-btn color="primary" :size="mobile ? 'large' : 'x-large'" class="submit-btn" @click="isSubmitted = false">
+              <h2 class="success-title">Заявка успешно отправлена!</h2>
+              <p class="success-subtitle">Наш специалист свяжется с вами в течение 15 минут</p>
+              <v-btn color="#EA5B0C" :size="mobile ? 'large' : 'x-large'" @click="isSubmitted = false" class="new-request-btn">
                 Отправить новую заявку
               </v-btn>
             </div>
           </template>
         </div>
-      </div>
+      </v-card>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/styles/main.scss" as *;
-::v-deep(.col) .v-label {
-  opacity: 1;
+.service-form-section {
+  padding: 40px 0;
+  // background-color: #f5f7fa;
 }
-.feedback-form {
-  margin: 0px 0px 25px 0px;
 
-  &__title {
-    margin-bottom: 10px;
-    font-size: 26px;
-    font-weight: 600;
-    background: #fff;
-    display: inline-block;
-    border-radius: 32px;
-    padding: 3px 10px;
-    color: $color-title;
+.form-card {
+  border-radius: 12px;
+  overflow: hidden;
+  // max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-content {
+  padding: 40px;
+
+  @media (max-width: 600px) {
+    padding: 24px;
   }
-  &__footer {
-    display: flex;
-    width: 72%;
-    justify-content: right;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+
+  .header-icon {
+    margin-bottom: 16px;
+  }
+}
+
+.form-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #102938;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.service-form {
+  .v-row {
+    margin-bottom: 8px;
+  }
+
+  .v-input__prepend-inner {
+    margin-right: 8px;
+  }
+}
+
+.form-footer {
+  margin-top: 24px;
+}
+
+.privacy-text {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.privacy-link {
+  color: #ea5b0c;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #ea5b0c, #ff8c42);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(234, 91, 12, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(234, 91, 12, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
 .success-message {
-  text-align: center;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  min-height: 400px; // Минимальная высота для сохранения пространства
-
-  h2 {
-    margin: 20px 0;
-    color: $color-title;
-  }
-
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    max-width: 80%;
-  }
-}
-.flex-input {
-  display: flex;
-  flex-wrap: wrap;
-
-  @media (max-width: 558px) {
-    flex-direction: column;
-  }
-}
-.phone {
-  margin-top: 15px;
-  font-size: 20px;
-  font-weight: 500;
-  @media (max-width: $md4) {
-    font-size: $fs-m;
-  }
-}
-.col:first-child {
-  flex: 0 0 20%;
-  order: 1;
-  margin-right: 12px;
-  @media (max-width: 558px) {
-    margin-right: 0px;
-  }
-}
-.col:nth-child(2) {
-  flex: 0 0 25%;
-  order: 2;
-  margin-right: 12px;
-  @media (max-width: $md3) {
-    margin-right: 0px;
-  }
-}
-.col:nth-child(3) {
-  flex: 0 0 25%;
-  order: 3;
-  margin-right: 10px;
-  @media (max-width: $md3) {
-    margin-right: 0px;
-  }
-}
-
-input::placeholder {
-  @media (max-width: $md4) {
-    color: #102938;
-  }
-}
-textarea::placeholder {
-  @media (max-width: $md4) {
-    color: #102938;
-  }
-}
-
-input[type="email"],
-input[type="password"],
-input[type="tel"],
-input[type="text"],
-textarea {
-  width: 100%;
-  height: auto;
-  color: #102938;
-  font-size: 20px;
-  vertical-align: top;
-  padding: 10px 0 4px;
-  border: none;
-  border-bottom: 1px solid #102938;
-  background: 0 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  @media (max-width: $md4) {
-    font-size: $fs-base;
-  }
-}
-.global-form {
-  margin-top: 2rem;
-  @media (max-width: $md4) {
-    margin-top: 20px;
-  }
-}
-:focus,
-a,
-button,
-input,
-textarea {
-  outline: 0;
-}
-textarea {
-  resize: none;
-  overflow: hidden;
-  height: 45px;
-}
-.form__title {
-  font-size: 36px;
-  font-weight: 600;
-  display: inline-block;
-  border-radius: 32px;
-  color: $color-title;
-  margin: 0px 0px 10px 0px;
-  @media (max-width: $md4) {
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-}
-
-.form-submit p {
-  color: #102938;
-  font-size: 1.3rem;
-  font-weight: 400;
-
-  @media (max-width: $md4) {
-    margin-bottom: 5px;
-    text-align: center;
-    line-height: 1.3;
-    font-size: 15px;
-  }
-}
-.form__button {
-  font-weight: 500;
-  padding: 10px 14px;
-  align-items: center;
-  border-radius: 4px;
-  border: 1px solid #ea5b0c;
-  background: rgba(245, 245, 245, 0);
-  color: #102938;
+  padding: 40px 0;
   text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  font-size: 20px;
-  @media (max-width: $md4) {
-    font-size: $fs-base;
-  }
-}
-.button_mtp {
-  margin-bottom: 2px;
-}
-@media (min-width: $md1) {
-  .form__button:hover {
-    background: #102938;
-    color: #f5f5f5;
-    border-color: #102938;
-  }
-}
-.on-hover:hover {
-  background: #102938;
-  transition: 10ms;
-  color: #f5f5f5;
-  border-color: #102938;
-}
-.form-bl.brd {
-  box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
-  color: #102938;
-  text-align: left;
-  padding: 80px 20px 80px 50px;
-  background-color: $background2;
-  background-image: url("../assets/images/services/home/service-septik.webp");
-  background-position: 100% 100%;
-  background-repeat: no-repeat;
-  background-size: 85% auto;
-  z-index: 10;
-  border-radius: 8px;
-  box-sizing: border-box;
-  @media (max-width: $md4) {
-    padding: 50px 12px 45px 12px;
-    background-image: linear-gradient(rgba(236, 239, 243, 0.7), rgba(236, 239, 243, 0.7)), url("../assets/images/homePage/services-1.webp");
-    background-size: 300% auto;
-    background-position: 92% 100%;
-  }
-}
-.feedback {
-  & p {
-    font-size: 12px;
-    @media (max-width: $md4) {
-      margin-top: 3px;
-      font-size: 11px;
-    }
-  }
-}
-.communication {
-  margin-bottom: 10px;
-  &__head {
-    font-size: 1.1rem;
-    @media (max-width: $md4) {
-      text-align: center;
-    }
-  }
-  &__btn {
-    display: flex;
-    flex-wrap: wrap;
-    @media (max-width: $md4) {
-      justify-content: center;
-    }
-  }
-}
-.v-input--density-default {
-  --v-input-control-height: 40px;
-}
-.submit-btn {
-  background: linear-gradient(90deg, #ea5b0c, #ff8c42);
-  color: white;
-  transition: transform 0.3s ease;
 }
 
-.submit-btn:hover {
-  transform: translateY(-2px);
+.success-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #102938;
+  margin: 24px 0 8px;
+}
+
+.success-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 24px;
+  max-width: 80%;
+}
+
+.new-request-btn {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.elevated-picker {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
 }
 </style>

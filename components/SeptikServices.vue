@@ -93,7 +93,7 @@ onMounted(() => {
               v-on:mouseleave="leaveHover"
               :class="item.class"
             >
-              <a
+              <div
                 :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
                 class="services__item-link item"
                 @click="goTo(item.routePath)"
@@ -120,7 +120,7 @@ onMounted(() => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ onMounted(() => {
                   v-on:mouseleave="leaveHover"
                   :class="item.class"
                 >
-                  <a
+                  <div
                     :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
                     class="services__item-link item"
                     @click="goTo(item.routePath)"
@@ -165,7 +165,7 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
