@@ -200,7 +200,6 @@ watch(mobileMenu, (newValue) => {
 
                 <v-list-item-title class="font-weight-medium nav-link">
                   {{ service.title }}
-                  <!-- <span class="nav-underline" :class="{ active: isActiveRoute(service.route) }"></span> -->
                 </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -208,31 +207,35 @@ watch(mobileMenu, (newValue) => {
         </v-menu>
 
         <div class="ml-auto d-flex align-center gap-3">
+          <!-- Выпадающее меню "Медиа" -->
+          <v-menu open-on-hover offset-y>
+            <template #activator="{ props }">
+              <v-btn v-bind="props" color="orange-darken-2" variant="text" size="x-large" class="hidden-sm-and-down social-btn">
+                <template #prepend>
+                  <icon name="mdi-play-box-multiple-outline" size="36"></icon>
+                </template>
+                Медиа
+                <icon name="mdi-chevron-down" class="ml-2" />
+              </v-btn>
+            </template>
+
+            <v-list class="social-menu">
+              <v-list-subheader>Наши соцсети</v-list-subheader>
+              <v-list-item color="orange-darken-2" href="https://t.me/BISlandscaping" target="_blank" value="telegram">
+                <template v-slot:title> <div class="pr-3">Телеграм-канал</div> </template>
+                <template v-slot:prepend> <icon name="mdi-telegram" size="34" class="mr-3 text-orange-darken-2"> </icon> </template
+              ></v-list-item>
+              <v-list-item href="https://vkvideo.ru/@bislandscaping" target="_blank" value="vk">
+                <template v-slot:title> <div class="pr-3">VK Видео</div> </template>
+                <template v-slot:prepend> <icon name="mdi-vk" size="34" class="mr-3 text-orange-darken-2"> </icon> </template
+              ></v-list-item>
+            </v-list>
+          </v-menu>
           <v-btn
             color="orange-darken-2"
             variant="text"
             size="x-large"
             class="hidden-sm-and-down mr-4 social-btn"
-            href="https://t.me/BISlandscaping"
-            target="_blank"
-          >
-            <icon name="mdi-telegram" size="36"></icon>
-          </v-btn>
-          <v-btn
-            color="orange-darken-2"
-            variant="text"
-            size="x-large"
-            class="hidden-sm-and-down mr-4 social-btn"
-            href="https://vkvideo.ru/@bislandscaping"
-            target="_blank"
-          >
-            <icon name="mdi-vk" size="36"></icon>
-          </v-btn>
-          <v-btn
-            color="orange-darken-2"
-            variant="text"
-            size="x-large"
-            class="hidden-sm-and-down mr-8 social-btn"
             href="https://wa.me/79112775607"
             target="_blank"
           >
@@ -245,89 +248,7 @@ watch(mobileMenu, (newValue) => {
         </div>
       </div>
     </v-app-bar>
-    <!-- <v-navigation-drawer
-      v-model="mobileMenu"
-      temporary
-      location="left"
-      width="700"
-      class="mobile-menu"
-      style="top: 0 !important; height: 100% !important; z-index: 1200"
-    >
-      <v-list>
-        <v-list-item class="px-2">
-          <template #append>
-            <v-btn :ripple="false" icon="mdi-close" variant="text" @click="mobileMenu = false" class="ml-auto" size="x-large" />
-          </template>
-        </v-list-item>
 
-        <v-list-group value="mobile-services">
-          <template #activator="{ props }">
-            <v-list-item v-bind="props" prepend-icon="mdi-tools" title="Каталог" class="font-weight-bold text-subtitle-1" />
-          </template>
-
-          <v-list-item
-            v-for="(service, index) in services"
-            :to="service.route"
-            :key="index"
-            @click="mobileMenu = false"
-            :class="{ 'active-nav-item-mobile': isActiveRoute(service.route) }"
-            class="pl-8"
-          >
-            <template #prepend>
-              <v-icon :icon="service.icon" size="24" class="mr-0 text-orange-darken-2" />
-            </template>
-            <span class="text-body-2 nav-link-mobile">
-              {{ service.title }}
-             
-            </span>
-          </v-list-item>
-        </v-list-group>
-
-        <v-divider class="my-4" />
-      </v-list>
-
-      <v-card variant="outlined" class="ma-2 pa-4">
-        <v-form ref="form" @submit.prevent="submit">
-          <v-text-field
-            v-model="phone"
-            label="Ваш телефон"
-            variant="outlined"
-            density="comfortable"
-            prepend-inner-icon="mdi-phone"
-            :rules="phoneRules"
-            required
-          />
-
-          <v-btn
-            block
-            style="background: linear-gradient(90deg, #ea5b0c, #ff8c42)"
-            color="orange-darken-2"
-            size="large"
-            prepend-icon="mdi-arrow-right"
-            type="submit"
-          >
-            Заказать звонок
-          </v-btn>
-
-          <div class="text-caption text-grey mt-2">
-            Нажимая кнопку, вы соглашаетесь с
-            <nuxt-link :to="{ name: ROUTES_PATHS.POLICY }" class="text-orange-darken-2"> политикой конфиденциальности </nuxt-link>
-          </div>
-        </v-form>
-      </v-card>
-
-      <v-card variant="outlined" class="ma-2 pa-4">
-        <div class="text-body-1 font-weight-bold mb-2">Контакты</div>
-
-        <div class="d-flex align-center justify-space-between gap-2">
-          <div class="text-caption text-grey">
-            г. Санкт-Петербург<br />
-            Ежедневно с 9 до 18 часов
-          </div>
-          <v-btn icon="mdi-whatsapp" color="green" href="https://wa.me/79112775607" target="_blank" />
-        </div>
-      </v-card>
-    </v-navigation-drawer> -->
     <v-navigation-drawer
       v-model="mobileMenu"
       temporary
@@ -435,6 +356,27 @@ watch(mobileMenu, (newValue) => {
 </template>
 
 <style lang="scss" scoped>
+/* Стили для меню медиа */
+.social-menu {
+  .v-list-subheader {
+    font-weight: 600;
+    color: #ea5b0c;
+  }
+
+  .v-list-item {
+    min-height: 48px;
+    padding: 0 16px;
+
+    &:hover {
+      background-color: rgba(234, 91, 12, 0.05);
+    }
+
+    .v-icon {
+      color: #ea5b0c;
+      margin-right: 12px;
+    }
+  }
+}
 /* Добавляем новые стили для сообщения об успехе */
 .success-message {
   display: flex;

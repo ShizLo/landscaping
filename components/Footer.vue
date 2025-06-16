@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
             <div class="media-items">
               <a href="https://vkvideo.ru/@bislandscaping" class="media-item contact-link">
                 <icon name="mdi-vk" size="36" class="contact-icon" />
-                <span>VK видео</span>
+                <span>VK Видео</span>
               </a>
               <a href="https://t.me/BISlandscaping" class="media-item contact-link">
                 <icon name="mdi-telegram" size="36" class="contact-icon" />
