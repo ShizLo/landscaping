@@ -125,7 +125,6 @@ async function submit() {
     message.topic_id = TOPICS_ID.SERVICES;
     message.chat_id = CHATS_ID.BASE;
     message.text = `👨🏻 Заказ звонка\nКонтакт: ${phone.value}`;
-    console.log(phone.value);
     await sendTextMessage(message);
     isSubmitted.value = true; // Устанавливаем флаг успешной отправки
     showSuccessSnackbar.value = true;
@@ -249,7 +248,7 @@ watch(mobileMenu, (newValue) => {
       </div>
     </v-app-bar>
 
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="mobileMenu"
       temporary
       location="left"
@@ -260,6 +259,31 @@ watch(mobileMenu, (newValue) => {
       <v-list>
         <v-list-item class="px-2">
           <template #append>
+            <v-menu offset-y>
+              <template #activator="{ props }">
+                <v-btn v-bind="props" color="orange-darken-4" variant="text" size="large" class="social-btn">
+                  <template #prepend>
+                    <icon name="mdi-play-box-multiple-outline" size="32"></icon>
+                  </template>
+                  Медиа
+                  <icon name="mdi-chevron-down" class="ml-2" />
+                </v-btn>
+              </template>
+
+              <v-list class="social-menu">
+                <v-list-subheader>Наши соцсети</v-list-subheader>
+                <v-list-item color="orange-darken-2" href="https://t.me/BISlandscaping" target="_blank" value="telegram">
+                  <template v-slot:title> <div class="pr-3 text-body-2">Телеграм-канал</div> </template>
+                  <template v-slot:prepend> <icon name="mdi-telegram" size="28" class="mr-3 text-orange-darken-2"> </icon> </template
+                ></v-list-item>
+                <v-list-item href="https://vkvideo.ru/@bislandscaping" target="_blank" value="vk">
+                  <template v-slot:title> <div class="pr-3 text-body-2">VK Видео</div> </template>
+                  <template v-slot:prepend> <icon name="mdi-vk" size="28" class="mr-3 text-orange-darken-2"> </icon> </template
+                ></v-list-item>
+              </v-list>
+            </v-menu>
+          </template>
+          <template #prepend>
             <v-btn :ripple="false" icon="mdi-close" variant="text" @click="mobileMenu = false" class="ml-auto" size="x-large" />
           </template>
         </v-list-item>
@@ -278,14 +302,13 @@ watch(mobileMenu, (newValue) => {
             class="pl-8"
           >
             <template #prepend>
-              <v-icon :icon="service.icon" size="24" class="mr-0 text-orange-darken-2" />
+              <v-icon :icon="service.icon" size="28" class="mr-0 text-orange-darken-2" />
             </template>
             <span class="text-body-2 nav-link-mobile">
               {{ service.title }}
             </span>
           </v-list-item>
         </v-list-group>
-
         <v-divider class="my-4" />
 
         <template v-if="!isSubmitted">
@@ -347,6 +370,140 @@ watch(mobileMenu, (newValue) => {
           </div>
         </v-card>
       </v-list>
+    </v-navigation-drawer> -->
+    <v-navigation-drawer
+      v-model="mobileMenu"
+      temporary
+      location="left"
+      width="700"
+      class="mobile-menu"
+      style="top: 0 !important; height: 100% !important; z-index: 1200"
+    >
+      <!-- Весь контент оборачиваем в v-card -->
+      <v-card class="d-flex flex-column h-100">
+        <!-- Фиксированная шапка -->
+        <v-card-title class="mobile-menu-header py-3 px-2 d-flex align-center">
+          <v-menu offset-y>
+            <template #activator="{ props }">
+              <v-btn v-bind="props" color="orange-darken-4" variant="text" size="large" class="social-btn">
+                <template #prepend>
+                  <icon name="mdi-play-box-multiple-outline" size="32"></icon>
+                </template>
+                Медиа
+                <icon name="mdi-chevron-down" class="ml-2" />
+              </v-btn>
+            </template>
+
+            <v-list class="social-menu">
+              <v-list-subheader>Наши соцсети</v-list-subheader>
+              <v-list-item color="orange-darken-2" href="https://t.me/BISlandscaping" target="_blank" value="telegram">
+                <template v-slot:title> <div class="pr-3 text-body-2">Телеграм-канал</div> </template>
+                <template v-slot:prepend> <icon name="mdi-telegram" size="28" class="mr-3 text-orange-darken-2"> </icon> </template
+              ></v-list-item>
+              <v-list-item href="https://vkvideo.ru/@bislandscaping" target="_blank" value="vk">
+                <template v-slot:title> <div class="pr-3 text-body-2">VK Видео</div> </template>
+                <template v-slot:prepend> <icon name="mdi-vk" size="28" class="mr-3 text-orange-darken-2"> </icon> </template
+              ></v-list-item>
+            </v-list>
+          </v-menu>
+          <v-spacer></v-spacer>
+          <v-btn
+            :ripple="false"
+            color="orange-darken-4"
+            icon="mdi-close-circle-outline"
+            variant="text"
+            @click="mobileMenu = false"
+            size="x-large"
+          />
+        </v-card-title>
+
+        <!-- Прокручиваемая область -->
+        <v-card-text class="mobile-menu-content flex-grow-1 pa-0 overflow-y-auto">
+          <v-list>
+            <v-list-group value="mobile-services">
+              <template #activator="{ props }">
+                <v-list-item v-bind="props" prepend-icon="mdi-tools" title="Каталог" class="font-weight-bold text-subtitle-1" />
+              </template>
+
+              <v-list-item
+                v-for="(service, index) in services"
+                :to="service.route"
+                :key="index"
+                @click="mobileMenu = false"
+                :class="{ 'active-nav-item-mobile': isActiveRoute(service.route) }"
+                class="pl-8"
+              >
+                <template #prepend>
+                  <v-icon :icon="service.icon" size="28" class="mr-0 text-orange-darken-2" />
+                </template>
+                <span class="text-body-2 nav-link-mobile">
+                  {{ service.title }}
+                </span>
+              </v-list-item>
+            </v-list-group>
+            <v-divider class="my-4" />
+
+            <template v-if="!isSubmitted">
+              <v-card variant="outlined" class="ma-2 pa-4">
+                <v-form ref="form" @submit.prevent="submit">
+                  <v-text-field
+                    v-model="phone"
+                    label="Ваш телефон"
+                    variant="outlined"
+                    density="comfortable"
+                    prepend-inner-icon="mdi-phone"
+                    :rules="phoneRules"
+                    required
+                    class="mb-2"
+                    v-maska="'+7 (###) ###-##-##'"
+                    placeholder="+7 (___) ___-__-__"
+                  />
+
+                  <v-btn
+                    block
+                    :disabled="!isValid"
+                    style="background: linear-gradient(90deg, #ea5b0c, #ff8c42)"
+                    color="orange-darken-2"
+                    size="large"
+                    prepend-icon="mdi-arrow-right"
+                    type="submit"
+                  >
+                    Заказать звонок
+                  </v-btn>
+
+                  <div class="text-caption text-grey mt-2">
+                    Нажимая кнопку, вы соглашаетесь с
+                    <nuxt-link :to="{ name: ROUTES_PATHS.POLICY }" class="text-orange-darken-2"> политикой конфиденциальности </nuxt-link>
+                  </div>
+                </v-form>
+              </v-card>
+            </template>
+
+            <template v-else>
+              <v-card variant="outlined" class="ma-2 pa-4 success-message">
+                <v-icon color="success" size="64">mdi-check-circle</v-icon>
+                <h2 class="success-title mt-4">Заявка успешно отправлена!</h2>
+                <p class="success-subtitle mb-4">Мы свяжемся с Вами в ближайшее время</p>
+                <v-btn color="orange-darken-2" size="large" @click="isSubmitted = false" class="new-request-btn" block>
+                  Отправить новую заявку
+                </v-btn>
+              </v-card>
+            </template>
+
+            <v-card variant="outlined" class="ma-2 pa-4">
+              <div class="text-body-1 font-weight-bold mb-2">Контакты</div>
+
+              <div class="d-flex align-center justify-space-between gap-2">
+                <div class="text-caption text-grey">
+                  г. Санкт-Петербург<br />
+                  Ежедневно с 9 до 18 часов
+                </div>
+                <v-btn icon="mdi-whatsapp" color="green" href="https://wa.me/79112775607" target="_blank" />
+              </div>
+            </v-card>
+          </v-list>
+        </v-card-text>
+      </v-card>
     </v-navigation-drawer>
     <v-main style="padding-top: 100px" :class="{ 'overflow-hidden': mobileMenu }">
       <div><NuxtPage /></div>
@@ -356,6 +513,36 @@ watch(mobileMenu, (newValue) => {
 </template>
 
 <style lang="scss" scoped>
+.mobile-menu {
+  &-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  &-content {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+  }
+}
+
+// Для правильного отображения вложенных элементов
+.v-list {
+  padding-top: 0 !important;
+}
+
+.v-list-group__items .v-list-item {
+  padding-inline-start: 32px !important;
+}
+
 /* Стили для меню медиа */
 .social-menu {
   .v-list-subheader {
