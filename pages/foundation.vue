@@ -46,6 +46,8 @@ function updatePrices() {
   state.bannerPrice[0].price = catalogStore.getPriceById(2);
   //Деревянная обвязка
   state.bannerPrice[1].price = catalogStore.getPriceById(35);
+  //Монтаж фундамента под дом
+  state.bannerPrice[2].price = catalogStore.getPriceById(2);
   //</Банер>===============================================================================
   //<Дополнительные бурут>================================================================================
   //Отсыпка свайного поля
@@ -68,14 +70,19 @@ const state = reactive({
 function initializeBannerStructure() {
   return [
     {
-      url: "/images/foundationPage/slider-1.jpg",
+      url: "media/images/content/foundation/foundation-installation-11.jpg",
       price: "",
       name: "Монтаж фундамента под дом",
     },
     {
-      url: "/images/foundationPage/slider-2.jpg",
+      url: "media/images/content/foundation/foundation-installation-10.jpg",
       price: "",
       name: "Деревянная обвязка",
+    },
+    {
+      url: "media/images/content/foundation/foundation-installation-09.jpg",
+      price: "",
+      name: "Монтаж фундамента под дом",
     },
   ];
 }
@@ -88,7 +95,7 @@ function initializeServicesStructure() {
           title: "Монтаж фундамента под дом",
           price: "",
           pathImg: img_service_1,
-          hoverColors: "rgb(170, 214, 199)",
+          hoverColors: "rgb(255, 229, 204)",
         },
       ],
       [
@@ -97,14 +104,14 @@ function initializeServicesStructure() {
           title: "Деревянная обвязка",
           price: "",
           pathImg: img_service_2,
-          hoverColors: "rgb(204, 209, 255)",
+          hoverColors: "rgb(255, 229, 204)",
         },
         {
           class: "services__row-item-sm",
           title: "Обвязка уголком",
           price: "",
           pathImg: img_service_3,
-          hoverColors: "rgb(204, 209, 255)",
+          hoverColors: "rgb(255, 229, 204)",
         },
       ],
     ],
@@ -122,7 +129,7 @@ function initializeServicesStructure() {
           title: "Пробное бурение",
           price: "",
           pathImg: img_service_5,
-          hoverColors: "rgb(243, 253, 180)",
+          hoverColors: "rgb(255, 229, 204)",
         },
       ],
       [
@@ -213,8 +220,9 @@ const feedbackForm = reactive({
       :bannerPrice="state.bannerPrice"
       @isVisible="visibleForm()"
     />
-    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по фундаменту" />
 
+    <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по фундаменту" />
+    <CalcFoundation></CalcFoundation>
     <WorkOrder :data="dataOrder" title="Как мы работаем" />
     <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
     <PopularServices title="Популярные услуги" />

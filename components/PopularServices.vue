@@ -535,6 +535,7 @@ onUnmounted(() => {
 
 .global-services {
   padding: 60px 0;
+  padding: 0 0 60px 0;
   position: relative;
   overflow: hidden;
   // background: linear-gradient(to bottom, #f9fafc 0%, #f0f4f9 100%);
@@ -547,14 +548,16 @@ onUnmounted(() => {
 }
 
 .section-header {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   text-align: center;
+  @media (max-width: $md4) {
+    margin-bottom: 20px;
+  }
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  margin: 0 0 15px 0;
   position: relative;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
@@ -577,6 +580,7 @@ onUnmounted(() => {
     transform: translateX(-50%);
     width: 80px;
     height: 5px;
+    // background: linear-gradient(90deg, black, darken(black, 15%));
     background: linear-gradient(90deg, black, color.adjust(black, $lightness: -15%));
     border-radius: 3px;
     transition: width 0.3s ease;
@@ -584,6 +588,25 @@ onUnmounted(() => {
 
   &:hover .title-decoration {
     width: 120px;
+  }
+
+  @media (max-width: $md3) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: $md4) {
+    font-size: 2rem;
+    margin-bottom: 10px;
+
+    .title-decoration {
+      width: 60px;
+      height: 3px;
+      bottom: -8px;
+    }
+
+    &:hover .title-decoration {
+      width: 80px;
+    }
   }
 }
 

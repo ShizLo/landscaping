@@ -11,6 +11,7 @@ export const TOPICS_ID = {
   LANDSCAPE: 4294967339, // Проекты
   DEPARTURE: 4294967337, // Первичный выезд
   VACANCIES: 4294967411, // Отклики на вакансии
+  FOUNDATION: 4294967476, // Заявки на фундамент
 };
 export const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
 

@@ -130,9 +130,11 @@ onBeforeUnmount(() => {
             <div class="menu__items" :class="{ visible: !isMobile || menuStates.services }">
               <nuxt-link :to="{ name: ROUTES_PATHS.TOPOGRAPHY }" class="menu__item">Проект и топографическая съемка</nuxt-link>
               <nuxt-link :to="{ name: ROUTES_PATHS.FAUNDATION }" class="menu__item">Свайный фундамент</nuxt-link>
+              <nuxt-link :to="{ name: ROUTES_PATHS.SEPTIC }" class="menu__item">Септик под ключ</nuxt-link>
               <nuxt-link :to="{ name: ROUTES_PATHS.WATER }" class="menu__item">Водоподготовка и система очистки воды</nuxt-link>
               <nuxt-link :to="{ name: ROUTES_PATHS.DRAINAGE }" class="menu__item">Дренаж и ливневая канализация</nuxt-link>
               <nuxt-link :to="{ name: ROUTES_PATHS.ELECTRICITY }" class="menu__item">Электромонтажные работы</nuxt-link>
+              <nuxt-link :to="{ name: ROUTES_PATHS.IMPROVEMENT }" class="menu__item">Благоустройство</nuxt-link>
               <nuxt-link :to="{ name: ROUTES_PATHS.FENCE }" class="menu__item">Установка заборов</nuxt-link>
             </div>
           </div>

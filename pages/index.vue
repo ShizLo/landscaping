@@ -1,5 +1,6 @@
 <script setup>
 import { ROUTES_PATHS } from "./assets/constants";
+import { ralColorMap } from "~/data/ralColors";
 
 const catalogStore = useCatalogStore();
 
@@ -84,6 +85,8 @@ function initializeServicesStructure() {
           price: "",
           pathImg: img_service_1,
           hoverColors: "rgb(170, 214, 199)",
+          routePath: ROUTES_PATHS.SEPTIC,
+          // description: "fdjifjodi",
           garanty: [
             {
               icon: garantyIcon,
@@ -171,6 +174,7 @@ function initializeDopServicesStructure() {
           price: "",
           pathImg: img_service_12,
           hoverColors: "rgb(170, 214, 199)",
+          routePath: ROUTES_PATHS.IMPROVEMENT,
           garanty: [
             {
               icon: contractIcon,
@@ -193,7 +197,7 @@ function initializeDopServicesStructure() {
           title: "Бурение скважин",
           price: "",
           pathImg: img_service_7,
-          hoverColors: "rgb(204, 209, 255)",
+          hoverColors: ralColorMap[1000].color,
           routePath: ROUTES_PATHS.WATER,
         },
         {
@@ -212,7 +216,7 @@ function initializeDopServicesStructure() {
           title: "Обустройство дренажа",
           price: "",
           pathImg: img_service_9,
-          hoverColors: "rgb(255, 229, 204)",
+          hoverColors: "rgb(204, 209, 255)",
           routePath: ROUTES_PATHS.DRAINAGE,
         },
         {
@@ -220,7 +224,7 @@ function initializeDopServicesStructure() {
           title: "Обустройство колодца",
           price: "",
           pathImg: img_service_10,
-          hoverColors: "rgb(243, 253, 180)",
+          hoverColors: "rgb(204, 209, 255)",
           routePath: ROUTES_PATHS.WATER,
         },
       ],
@@ -255,19 +259,27 @@ function initializeDataWorkStructure() {
   return [
     {
       url: "/media/images/content/landscaping/photo-landscaping-01.jpg",
-      title: "Озеленение",
+      title: "Благоустройство",
       work: [
         {
           url: "/media/images/content/landscaping/photo-landscaping-01.jpg",
-          alt: "Озеленение",
+          alt: "Благоустройство",
         },
         {
-          url: "/media/images/content/landscaping/photo-landscaping-02.jpg",
-          alt: "Озеленение",
+          url: "/media/images/content/landscaping/photo-landscaping-04.jpg",
+          alt: "Благоустройство",
+        },
+        {
+          url: "/media/images/content/landscaping/photo-landscaping-05.jpg",
+          alt: "Благоустройство",
+        },
+        {
+          url: "/media/images/content/landscaping/photo-landscaping-06.jpg",
+          alt: "Благоустройство",
         },
         {
           url: "/media/images/content/landscaping/photo-landscaping-03.webp",
-          alt: "Озеленение",
+          alt: "Благоустройство",
         },
       ],
     },
@@ -303,11 +315,39 @@ function initializeDataWorkStructure() {
         },
       ],
     },
+    {
+      url: "/media/images/content/topography/topography-removal-boundaries-01.jpeg",
+      title: "Вынос границ участка",
+      work: [
+        {
+          url: "/media/images/content/topography/topography-removal-boundaries-01.jpeg",
+          alt: "Вынос границ",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/fence/fence-gitter-mesh-01.jpg",
+      title: "Забор из гиттера",
+      work: [
+        {
+          url: "/media/images/content/fence/fence-gitter-mesh-01.jpg",
+          alt: "Забор из гиттера",
+        },
+        {
+          url: "/media/images/content/fence/fence-gitter-mesh-02.jpeg",
+          alt: "Забор из гиттера",
+        },
+      ],
+    },
 
     {
-      url: "/media/images/content/fence/fence-metal-picket-01.jpeg",
+      url: "/media/images/content/landscaping/photo-landscaping-06.jpg",
       title: "Забор из штакетника",
       work: [
+        {
+          url: "/media/images/content/landscaping/photo-landscaping-06.jpg",
+          alt: "Забор из штакетника",
+        },
         {
           url: "/media/images/content/fence/fence-metal-picket-01.jpeg",
           alt: "Забор из штакетника",
@@ -362,6 +402,32 @@ function initializeDataWorkStructure() {
           alt: "Свайное поле",
         },
         {
+          url: "/media/images/content/foundation/foundation-installation-15.jpg",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/media/images/content/foundation/foundation-installation-11.jpg",
+          alt: "Свайное поле",
+        },
+
+        {
+          url: "/media/images/content/foundation/foundation-installation-12.jpg",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/media/images/content/foundation/foundation-installation-13.jpg",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/media/images/content/foundation/foundation-installation-14.jpg",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/media/images/content/foundation/foundation-installation-09.jpg",
+          alt: "Свайное поле",
+        },
+
+        {
           url: "/media/images/content/foundation/foundation-installation-02.webp",
           alt: "Свайное поле",
         },
@@ -391,41 +457,161 @@ function initializeDataWorkStructure() {
         },
       ],
     },
-    {
-      url: "/media/images/content/fence/fence-gitter-mesh-01.jpg",
-      title: "Забор из гиттера",
-      work: [
-        {
-          url: "/media/images/content/fence/fence-gitter-mesh-01.jpg",
-          alt: "Забор из гиттера",
-        },
-        {
-          url: "/media/images/content/fence/fence-gitter-mesh-02.jpeg",
-          alt: "Забор из гиттера",
-        },
-      ],
-    },
 
     {
-      url: "/media/images/content/topography/topography-removal-boundaries-01.jpeg",
-      title: "Вынос границ участка",
-      work: [
-        {
-          url: "/media/images/content/topography/topography-removal-boundaries-01.jpeg",
-          alt: "Вынос границ",
-        },
-      ],
-    },
-    {
-      url: "/media/images/content/preparation/preparation-clearning-01.jpg",
+      url: "/media/images/content/preparation/preparation-clearning-02.jpg",
       title: "Расчистка участка",
       work: [
+        {
+          url: "/media/images/content/preparation/preparation-clearning-02.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/media/images/content/preparation/preparation-clearning-06.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/media/images/content/preparation/preparation-clearning-04.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/media/images/content/preparation/preparation-clearning-05.jpg",
+          alt: "Расчистка участка",
+        },
         {
           url: "/media/images/content/preparation/preparation-clearning-01.jpg",
           alt: "Расчистка участка",
         },
       ],
     },
+    {
+      url: "/media/images/content/grounding/grounding-loop-01.jpg",
+      title: "Контур заземления",
+      work: [
+        {
+          url: "/media/images/content/grounding/grounding-loop-01.jpg",
+          alt: "Контур заземления",
+        },
+        {
+          url: "/media/images/content/grounding/grounding-loop-05.jpg",
+          alt: "Контур заземления",
+        },
+        {
+          url: "/media/images/content/grounding/grounding-loop-02.jpg",
+          alt: "Контур заземления",
+        },
+        {
+          url: "/media/images/content/grounding/grounding-loop-03.jpg",
+          alt: "Контур заземления",
+        },
+        {
+          url: "/media/images/content/grounding/grounding-loop-04.jpg",
+          alt: "Контур заземления",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/water/water-drilling-well-01.jpg",
+      title: "Водоснабжение",
+      work: [
+        {
+          url: "/media/images/content/water/water-drilling-well-01.jpg",
+          alt: "Бурение скважины",
+        },
+        {
+          url: "/media/images/content/water/water-drilling-well-02.jpg",
+          alt: "Бурение скважины",
+        },
+        {
+          url: "/media/images/content/water/water-cusson-01.jpg",
+          alt: "Монтаж кессона",
+        },
+        {
+          url: "/media/images/content/water/water-cusson-03.jpg",
+          alt: "Монтаж кессона",
+        },
+        {
+          url: "/media/images/content/water/water-coupling-01.jpg",
+          alt: "Электросварная муфта",
+        },
+        {
+          url: "/media/images/content/water/water-coupling-02.jpg",
+          alt: "Электросварная муфта",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/drainage/drainage-well-01.jpg",
+      title: "Дренаж участка",
+      work: [
+        {
+          url: "/media/images/content/drainage/drainage-well-01.jpg",
+          alt: "Дренаж участка",
+        },
+        {
+          url: "/media/images/content/drainage/drainage-ditch-01.jpg",
+          alt: "Дренаж участка",
+        },
+        {
+          url: "/media/images/content/drainage/drainage-ditch-02.jpg",
+          alt: "Дренаж участка",
+        },
+        {
+          url: "/media/images/content/drainage/drainage-inlet-01.jpg",
+          alt: "Дренаж участка",
+        },
+        {
+          url: "/media/images/content/drainage/drainage-ditch-03.jpg",
+          alt: "Дренаж участка",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/gabions/gabions-fence-02.jpg",
+      title: "Габионы",
+      work: [
+        {
+          url: "/media/images/content/gabions/gabions-fence-02.jpg",
+          alt: "Габионы",
+        },
+        {
+          url: "/media/images/content/gabions/gabions-fence-03.jpg",
+          alt: "Габионы",
+        },
+        {
+          url: "/media/images/content/gabions/gabions-fence-04.jpg",
+          alt: "Габионы",
+        },
+      ],
+    },
+    {
+      url: "/media/images/content/diffusion/diffusion-02.jpg",
+      title: "Поле рассеивания",
+      work: [
+        {
+          url: "/media/images/content/diffusion/diffusion-02.jpg",
+          alt: "Поле рассеивания",
+        },
+        {
+          url: "/media/images/content/diffusion/diffusion-01.jpg",
+          alt: "Поле рассеивания",
+        },
+      ],
+    },
+    // {
+    //   url: "/media/images/content/diffusion/diffusion-02.jpg",
+    //   title: "Кессон",
+    //   work: [
+    //     {
+    //       url: "/media/images/content/diffusion/diffusion-02.jpg",
+    //       alt: "Кессон",
+    //     },
+    //     {
+    //       url: "/media/images/content/diffusion/diffusion-01.jpg",
+    //       alt: "Кессон",
+    //     },
+    //   ],
+    // },
   ];
 }
 onMounted(async () => {

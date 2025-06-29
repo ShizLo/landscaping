@@ -17,4 +17,5 @@ export const ROUTES_PATHS = {
   VACANCIES_MID: "vacancies-middle",
   SEPTIC: "septiks",
   CALENDARSERVICE: "calendar-service",
+  IMPROVEMENT: "improvement",
 };

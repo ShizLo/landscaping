@@ -98,7 +98,7 @@ function goTo(path) {
         <h1 class="banner__text _visibility-mobile">{{ bannerText }}</h1>
         <h1 v-if="desctiption" class="banner__text _visibility">{{ desctiption[swiperBanner.slideIndex].title }}</h1>
         <h1 v-else-if="bannerText.length > 0" class="banner__text _visibility">{{ bannerText }}</h1>
-        <div v-if="stikers && !mobile">
+        <div class="stikers" v-if="stikers && !mobile">
           <div class="d-flex align-center">
             <v-icon size="34" class="mr-1">
               <v-img :src="guaranteeIcon"></v-img>
@@ -160,6 +160,11 @@ function goTo(path) {
 
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+.stikers {
+  font-weight: 600;
+}
 
 @media (max-width: $md3) {
   ._container {
@@ -366,11 +371,13 @@ function goTo(path) {
 }
 
 .banner {
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
   background-color: $color-background;
-  margin: 0px 0px 25px 0px;
+  margin: 0px 0px 50px 0px;
   @media (max-width: $md4) {
     background-color: #fff;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 20px 0px;
   }
 }
 .banner {
@@ -415,10 +422,12 @@ function goTo(path) {
     }
   }
   &__text {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 120%;
-    font-size: 2rem; //40
+    font-size: 2.4rem; //40
     color: #102938;
+    // text-align: center;
+    // text-transform: uppercase;
     @media (min-width: $md1) {
       margin-top: 15px;
     }
@@ -427,7 +436,7 @@ function goTo(path) {
     }
     @media (max-width: $md4) {
       font-size: 26px;
-      // text-align: center;
+      text-align: center;
       // align-self: center;
     }
   }
@@ -506,8 +515,8 @@ function goTo(path) {
 }
 .submit-btn {
   background: linear-gradient(90deg, #ea5b0c, #ff8c42);
-  letter-spacing: 0.5px;
-  font-weight: 600;
+  // letter-spacing: 0.5px;
+  font-weight: 700;
   text-transform: uppercase;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(234, 91, 12, 0.1);

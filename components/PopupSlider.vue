@@ -96,7 +96,7 @@ onUnmounted(() => {
     <div class="viewer-header">
       <div class="viewer-author"></div>
       <div class="viewer-title">
-        <span class="ui-viewer-title-text">{{ data[0].alt }} {{ popup.index }} из {{ data.length }}</span>
+        <span class="ui-viewer-title-text">{{ data[popup.index - 1].alt }} {{ popup.index }} из {{ data.length }}</span>
       </div>
       <div class="viewer-action">
         <div @click="emit('someEvent')" class="ui-viewer-close">

@@ -1,21 +1,17 @@
 <script setup>
-import { useRoute } from "vue-router";
-import axios from "axios";
 import { ref, computed, reactive, watch } from "vue";
 import { useDisplay } from "vuetify";
 import { ROUTES_PATHS } from "../assets/constants";
+import { TelegramService } from "@/shared/api/telegram/telegram.service";
+import { CHATS_ID, TOPICS_ID } from "@/shared/api/telegram/constants";
 
 const { mobile } = useDisplay();
-
-import { CHATS_ID, TOPICS_ID } from "../services/botService";
-
-const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
 
 const dialog = ref(true);
 const emit = defineEmits(["isVisible"]);
 const form = ref(null);
 const isSubmitted = ref(false);
-const timeoutId = ref(null); // Для хранения ID таймера
+const timeoutId = ref(null);
 
 const props = defineProps({
   services: {
@@ -36,7 +32,6 @@ const message = reactive({
 const dateTime = ref(new Date().toISOString());
 const selectedDateTime = ref(null);
 
-// Правила валидации
 const rules = {
   required: (value) => !!value || "Обязательное поле",
   phone: (value) => value.length === 18 || "Введите корректный телефон",
@@ -46,7 +41,6 @@ const isValid = computed(() => {
   return message.fio && message.phone.length == 18;
 });
 
-// Форматирование даты
 const formattedDateTime = computed(() => {
   const date = new Date(dateTime.value);
   return date.toLocaleString("ru-RU", {
@@ -56,7 +50,6 @@ const formattedDateTime = computed(() => {
   });
 });
 
-// Обработчики
 const moveCursorToFirstHash = () => {
   if (message.phone.length != 18) {
     message.phone = "+7 ";
@@ -84,7 +77,6 @@ const scrollToTextarea = (event) => {
 };
 
 const handleDialogClose = () => {
-  // Очищаем таймер при закрытии
   if (timeoutId.value) {
     clearTimeout(timeoutId.value);
     timeoutId.value = null;
@@ -104,78 +96,57 @@ const resetForm = () => {
 };
 
 const startCloseTimer = () => {
-  // Очищаем предыдущий таймер, если есть
   if (timeoutId.value) {
     clearTimeout(timeoutId.value);
   }
 
-  // Устанавливаем новый таймер
   timeoutId.value = setTimeout(() => {
     dialog.value = false;
     handleDialogClose();
   }, 3000);
 };
 
+const formatServiceMessage = () => {
+  // Преобразуем bid в массив, если это строка
+  const bids = Array.isArray(message.bid) ? message.bid : [message.bid].filter(Boolean);
+
+  const fields = [
+    message.fio && `ФИО: ${message.fio}`,
+    message.phone && `Телефон: ${message.phone}`,
+    message.address && `Адрес: ${message.address}`,
+    bids.length > 0 && `Услуга: ${bids.join(", ")}`,
+    message.communication.length > 0 && `Связь: ${message.communication.join(", ")}`,
+    selectedDateTime.value && `Дата звонка: ${selectedDateTime.value}`,
+    message.notes && `Примечания: ${message.notes}`,
+  ].filter(Boolean);
+
+  return `
+👨🏻 Заявка на услугу
+${fields.length ? "\n" + fields.join("\n") : ""}
+  `;
+};
+
 async function sendMessage() {
   const { valid } = await form.value.validate();
-
   if (!valid) return;
 
   try {
-    const formattedText = `
-👨🏻 Заявка на услугу
-${
-  message.fio != "" ||
-  message.phone != "" ||
-  message.bid.length > 0 ||
-  message.address != "" ||
-  message.communication.length > 0 ||
-  message.notes != ""
-    ? `[line]`
-    : ""
-}
-${message.fio ? `ФИО: ${message.fio}` : ""}
-${message.phone ? `Телефон: ${message.phone}` : ""}
-${message.address ? `Адрес: ${message.address}` : ""}
-${message.bid.length ? `Услуга: ${message.bid}` : ""}
-${message.communication.length ? `Связь: ${message.communication}` : ""}
-${selectedDateTime.value ? `Дата звонка: ${selectedDateTime.value}` : ""}
-${message.notes ? `Примечания: ${message.notes}` : ""}
-`
-      .replace(/\./g, "\\\.")
-      .replace(/-/g, "\\-")
-      .replace(/\n+/g, "\n")
-      .replace(/\s*\[line\]/g, "\n")
-      .replace(/=/g, "\\=")
-      .replace(/>/g, "\\>")
-      .replace(/\+/g, "\\+")
-      .replace(/\(/g, "\\(")
-      .replace(/\)/g, "\\)")
-      .replace(/\]/g, "\\]")
-      .replace(/\[/g, "\\[")
-      .replace(/_/g, "\\_")
-      .replace(/\*/g, "\\*")
-      .replace(/~/g, "\\~")
-      .replace(/`/g, "\\`")
-      .replace(/#/g, "\\#")
-      .replace(/\|/g, "\\|")
-      .replace(/{/g, "\\{")
-      .replace(/}/g, "\\}")
-      .replace(/!/g, "\\!")
-      .trim();
+    const messageText = formatServiceMessage();
 
-    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+    await TelegramService.sendTextMessage({
       chat_id: CHATS_ID.BASE,
-      text: formattedText,
-      parse_mode: "MarkdownV2",
-      message_thread_id: TOPICS_ID.SERVICES,
+      text: messageText,
+      topic_id: TOPICS_ID.SERVICES,
     });
 
     isSubmitted.value = true;
-    startCloseTimer(); // Запускаем таймер закрытия
+    startCloseTimer();
   } catch (error) {
     console.error("Ошибка отправки:", error);
     isSubmitted.value = false;
+
+    // Показываем пользователю ошибку (можно добавить toast/snackbar)
+    alert("Не удалось отправить заявку. Пожалуйста, попробуйте позже или позвоните нам.");
   }
 }
 
@@ -210,7 +181,7 @@ watch(dialog, (newVal) => {
           <v-divider class="my-2 border-opacity-100"></v-divider>
 
           <v-card-text class="py-1 py-md-4 px-4">
-            <p class="text-body-1 text-medium-emphasis mb-6">Мы свяжемся с Вами в удобное для Вас время</p>
+            <p class="text-body-1 text-medium-emphasis mb-6">Мы свяжемся с Вами в ближайшее время</p>
 
             <v-form ref="form" @submit.prevent="sendMessage">
               <v-row dense>
@@ -259,7 +230,7 @@ watch(dialog, (newVal) => {
                   ></v-select>
                 </v-col>
 
-                <v-col cols="12" md="6">
+                <!-- <v-col cols="12" md="6">
                   <v-text-field
                     v-model="message.address"
                     variant="outlined"
@@ -270,9 +241,9 @@ watch(dialog, (newVal) => {
                     color="orange-darken-2"
                     hide-details="auto"
                   ></v-text-field>
-                </v-col>
+                </v-col> -->
 
-                <v-col cols="12" md="6">
+                <!-- <v-col cols="12" md="6">
                   <v-select
                     v-model="message.communication"
                     :items="['Звонок', 'Telegram', 'WhatsApp']"
@@ -311,7 +282,7 @@ watch(dialog, (newVal) => {
                       class="elevated-picker"
                     ></v-date-picker>
                   </v-menu>
-                </v-col>
+                </v-col> -->
 
                 <v-col cols="12">
                   <v-textarea
